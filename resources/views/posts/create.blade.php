@@ -4,4 +4,6 @@
 
 <h1> Create </h1>
 
+<example-component />
+
 @stop
