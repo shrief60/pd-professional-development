@@ -6,12 +6,19 @@ use Illuminate\Database\Eloquent\Model;
 
 class Unit extends Model
 {
-    public function lesson(){
+
+    protected $fillable = [
+        'name', 'description'
+    ];
+
+    public function lesson()
+    {
         return $this->hasOne(Lesson::class);
     }
-    
-    public function course(){
+
+    public function course()
+    {
         return $this->belongsTo(Course::class);
     }
-    
+
 }

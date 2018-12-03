@@ -14,7 +14,7 @@ class Course extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'desciption', 'educator_id',
+        'name', 'description', 'educator_id',
     ];
 
     public function units()

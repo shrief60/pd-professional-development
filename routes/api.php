@@ -17,4 +17,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::get('/courses', 'CourseController@index');
 Route::post('/courses', 'CourseController@store');
+
+
+Route::get('/{course}/units', 'UnitController@index');
+Route::post('/{course}/units', 'UnitController@store');
+
+Route::post('{unit}/lessons', 'LessonController@store');

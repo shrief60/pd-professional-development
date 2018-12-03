@@ -6,6 +6,7 @@ use App\Course;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\CourseCollection;
 use App\Http\Requests\CourseStoreRequest;
 use Illuminate\Support\Facades\Validator;
 
@@ -16,7 +17,9 @@ class CourseController extends Controller
 
         $courses = Course::all();
 
-        return response()->json(compact('courses'));
+        return new CourseCollection(Course::all());
+
+        return api(compact($courses));
     }
 
 

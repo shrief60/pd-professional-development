@@ -11,9 +11,5 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
-
-Route::get('/posts/create', 'PostController@create');
+Route::view('/{any}', 'spa')->where('any', '.*');
