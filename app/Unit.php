@@ -11,14 +11,34 @@ class Unit extends Model
         'name', 'description'
     ];
 
-    public function lesson()
+    public function lessons()
     {
-        return $this->hasOne(Lesson::class);
+        return $this->hasMany(Lesson::class);
     }
 
     public function course()
     {
         return $this->belongsTo(Course::class);
+    }
+
+    /*************************************************************************/
+    /*                          Route Model Binding                          */
+    /*************************************************************************/
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
+
+    /**
+     * Get the options for generating the slug.
+     */
+    public function getSlugOptions() : SlugOptions
+    {
+        return SlugOptions::create()
+            ->generateSlugsFrom('name')
+            ->saveSlugsTo('slug')
+            ->doNotGenerateSlugsOnUpdate();
     }
 
 }

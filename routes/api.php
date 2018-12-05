@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
-
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -11,15 +9,12 @@ use Illuminate\Http\Request;
 | routes are loaded by the RouteServiceProvider within a group which
 | is assigned the "api" middleware group. Enjoy building your API!
 |
-*/
+ */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
 
-Route::get('/courses', 'CourseController@index');
-Route::post('/courses', 'CourseController@store');
-
+Route::resource('courses', 'CourseController')->only('index', 'store', 'show', 'destroy');
+// Since FormData doesn't support PUT method, so we are forced to use POST method instead.
+Route::post('courses/{course}', 'CourseController@update')->name('courses.update');
 
 Route::get('/{course}/units', 'UnitController@index');
 Route::post('/{course}/units', 'UnitController@store');

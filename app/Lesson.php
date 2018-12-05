@@ -9,9 +9,9 @@ class Lesson extends Model
 
     protected $guarded = [];
 
-    /**
-     * Relations
-     */
+    /*************************************************************************/
+    /*                              Relations                                */
+    /*************************************************************************/
     public function unit()
     {
         return $this->belongsTo(Unit::class);
@@ -31,16 +31,32 @@ class Lesson extends Model
     {
         return $this->belongsToMany(Student::class);
     }
-    /**
-     * Relations
-     */
 
-    /**
-     * Accessors
-     */
+    /*************************************************************************/
+    /*                              Accessors                                */
+    /*************************************************************************/
     public function getPathAttribute($path)
     {
         return asset("/storage/{$path}");
     }
 
+    /*************************************************************************/
+    /*                          Route Model Binding                          */
+    /*************************************************************************/
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
+
+    /**
+     * Get the options for generating the slug.
+     */
+    public function getSlugOptions() : SlugOptions
+    {
+        return SlugOptions::create()
+            ->generateSlugsFrom('name')
+            ->saveSlugsTo('slug')
+            ->doNotGenerateSlugsOnUpdate();
+    }
 }

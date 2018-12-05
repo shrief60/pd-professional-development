@@ -17,6 +17,7 @@ class CreateLessonsTable extends Migration
             $table->increments('id');
             $table->integer('unit_id')->unsigned();
             $table->string('title');
+            $table->string('slug');
             $table->string('description');
             $table->string('objectives');
             $table->string('path');

@@ -9,31 +9,24 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
+/** VueRouter */
 import VueRouter from 'vue-router';
-import routes from './routes/routes';
-
+import router from './router/router';
 Vue.use(VueRouter);
 
-const router = new VueRouter({
-    mode: 'history',
-    routes
-})
+/** Vuex */
+import { store } from './store/store'
 
-
-const files = require.context('./', true, /\.vue$/i)
-files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key)))
-
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
-
-// Public components;
-Vue.component('app', require('./components/app.vue'));
+/** Public components */
+import app from './components/app';
+Vue.component('loading', require('./components/partials/loading'));
 Vue.component('file-upload', require('vue-upload-component'));
 
-const app = new Vue({
+/** Fresh vue application */
+const App = new Vue({
     el: '#app',
-    router
+    components: {app},
+    template: '<app />',
+    router,
+    store
 });

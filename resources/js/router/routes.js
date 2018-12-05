@@ -1,22 +1,21 @@
-import home from '../components/home';
+import Index from '../components/home';
 import PageNotFound from '../components/errors/not_found';
 
-import CoursesIndex from '../components/courses/index';
-import CoursesAdd from '../components/courses/add';
-// import CoursesUpdate from '../components/courses/update';
-// import CoursesShow from '../components/courses/show';
+import CoursesIndex from '../components/educator/courses/index';
+import CoursesAdd from '../components/educator/courses/add';
+import CoursesShow from '../components/educator/courses/show';
+import CoursesUpdate from '../components/educator/courses/update';
 
-import UnitsIndex from '../components/units/index';
-import UnitsAdd from '../components/units/add';
+import UnitsIndex from '../components/educator/units/index';
+import UnitsAdd from '../components/educator/units/add';
 
+import LessonsIndex from '../components/educator/lessons/index';
+import LessonsAdd from '../components/educator/lessons/add';
 
-import LessonsIndex from '../components/lessons/index';
-import LessonsAdd from '../components/lessons/add';
-
-const routes = [
+export default [
     {
         path: '/',
-        component: home,
+        component: Index,
         name: 'home'
     },
 
@@ -33,7 +32,7 @@ const routes = [
     },
 
     {
-        path: '/lessons/show',
+        path: '/:unit/lessons/show',
         name: 'lessons.show',
         component: LessonsAdd
     },
@@ -62,6 +61,16 @@ const routes = [
         component: CoursesIndex
     },
     {
+        path: '/courses/:course',
+        name: 'courses.show',
+        component: CoursesShow
+    },
+    {
+        path: '/courses/edit/:course',
+        name: 'courses.update',
+        component: CoursesUpdate
+    },
+    {
         path: '/courses/add',
         name: 'courses.add',
         component: CoursesAdd
@@ -75,5 +84,3 @@ const routes = [
     }
 
 ];
-
-export default routes;

@@ -22,7 +22,9 @@
     "dependencies": {
         "formidable": "^1.2.1",
         "vue-router": "^3.0.2",
-        "vue-upload-component": "^2.8.16"
+        "vue-upload-component": "^2.8.16",
+        "vue-video": "^0.1.7",
+        "vuex": "^3.0.1"
     },
     "proxy": "http://discovery.test"
 }

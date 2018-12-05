@@ -1,16 +1,23 @@
 <template>
     <div>
-        <div v-if="loading">
-            Loading ...
-        </div>
+
+        <loading v-if="loading"></loading>
 
         <div v-else>
             <div v-for="course in courses" :key="course.id" class="card">
                 <div class="card-body">
+
                     <h3>
                      {{ course.name }}
                     </h3>
-                    <router-link class="btn btn-outline-primary" :to="{name: 'units.add', params: {course: course.id}}"> Add new unit </router-link>
+                    <p> {{ course.description }} </p>
+
+                    <router-link :to="{name: 'units.add', params: {course: course.slug}}"> Add new unit </router-link>
+
+                    <router-link :to="{name: 'courses.show', params: {course: course.slug}}"> Show Course </router-link>
+
+                    <router-link :to="{name: 'courses.update', params: {course: course.slug}}"> Update Course </router-link>
+
                 </div>
             </div>
         </div>
@@ -20,14 +27,15 @@
 
 <script>
     export default {
+
         data() {
             return {
                 loading: true,
                 courses: null
             }
         },
-        mounted() {
 
+        created() {
             axios.get('/api/courses')
                     .then(response => {
                         this.courses = response.data.data;
