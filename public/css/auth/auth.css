@@ -1,0 +1,202 @@
+body {
+  display: grid;
+  grid-template-columns: 600px auto;
+}
+
+@media screen and (max-width: 576px) {
+  body {
+    grid-template-columns: 1fr;
+  }
+}
+
+body .image {
+  background-image: url("https://images.pexels.com/photos/2162/sky-space-dark-galaxy.jpg?auto=compress&cs=tinysrgb&h=650&w=940");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  position: relative;
+}
+
+@media screen and (max-width: 576px) {
+  body .image {
+    display: none;
+  }
+}
+
+body .image:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  background: linear-gradient(70deg, rgba(75, 101, 132, 0.5), #777777);
+}
+
+body .content {
+  min-height: 100vh;
+  display: grid;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  justify-items: center;
+  background: linear-gradient(45deg, white, #dddddd);
+}
+
+@media screen and (max-width: 576px) {
+  body .content {
+    background-image: url("https://images.pexels.com/photos/2162/sky-space-dark-galaxy.jpg?auto=compress&cs=tinysrgb&h=650&w=940");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  body .content .wrapper {
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    display: grid;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+}
+
+body .content .wrapper {
+  width: 450px;
+  max-width: 90%;
+}
+
+body .content .wrapper h3 a {
+  display: block;
+  text-align: center;
+  color: #4b6584;
+  margin-bottom: 2rem;
+}
+
+body .content .wrapper h3 a:hover {
+  text-decoration: none;
+}
+
+body .content .wrapper .custom-select {
+  color: #424242;
+  border: 0px;
+  background: #ddd;
+  border-radius: 0px;
+}
+
+body .content .wrapper .input-group {
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+body .content .wrapper .input-group.input-group-focus * {
+  background: #ddd !important;
+}
+
+body .content .wrapper .input-group * {
+  color: #4b6584;
+  border: 0px;
+  background: #ddd;
+  border-radius: 0px;
+}
+
+body .content .wrapper .input-group .form-control::-webkit-input-placeholder {
+  color: #777;
+  font-weight: 300;
+}
+
+body .content .wrapper .input-group .form-control::-ms-input-placeholder {
+  color: #777;
+  font-weight: 300;
+}
+
+body .content .wrapper .input-group .form-control::placeholder {
+  color: #777;
+  font-weight: 300;
+}
+
+body .content .wrapper .input-group .input-group-addon {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  width: 40px;
+  display: grid;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+}
+
+body .content .wrapper .input-group .input-group-addon img {
+  width: 24px;
+  height: 24px;
+}
+
+body .content .wrapper .grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10px;
+}
+
+body .content .wrapper button[type=submit] {
+  background: #4b6584;
+  border: 0;
+  margin: 20px auto;
+  border-radius: 0;
+  display: block;
+  width: 100%;
+  -webkit-transition: 0.5s all;
+  transition: 0.5s all;
+  color: #fff;
+  border: 1px solid #4b6584;
+}
+
+body .content .wrapper button[type=submit]:hover {
+  background: #394c63;
+}
+
+body .content .or {
+  margin-bottom: 24px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+body .content .or .bar {
+  -webkit-box-flex: 1;
+      -ms-flex: auto;
+          flex: auto;
+  border: none;
+  height: 1px;
+  background-color: #aaa;
+}
+
+body .content .or span {
+  color: #ccc;
+  padding: 0 12px;
+}
+
+body .content .auth-switcher {
+  background: transparent;
+  border: 1px solid #4b6584;
+  color: #4b6584;
+  display: block;
+  width: 100%;
+}
+
+body .content .auth-switcher:hover {
+  border-color: #394c63;
+  color: #4b6584;
+}
+

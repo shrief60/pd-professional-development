@@ -57576,15 +57576,9 @@ var index_esm = {
         },
 
         removeAnswer: function removeAnswer(state, text) {
-            if (state.all.length > 0) {
-                var index = state.all.findIndex(function (answer) {
-                    return answer !== text;
-                });
-
-                if (index != -1) {
-                    state.all.splice(index, 1);
-                }
-            }
+            state.all = state.all.filter(function (answer) {
+                return answer !== text;
+            });
         },
 
         decreaseAnswersCount: function decreaseAnswersCount(state) {
