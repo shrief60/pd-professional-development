@@ -15,12 +15,24 @@ import router from './router/router';
 Vue.use(VueRouter);
 
 /** Vuex */
-import { store } from './store/store'
+import { store } from './store/store';
+
+/** Vue Notifications */
+import Toasted from 'vue-toasted';
+Vue.use(Toasted)
+
+/** Bootstrap Vue */
+import BootstrapVue from 'bootstrap-vue'
+Vue.use(BootstrapVue);
+
+/** Plyr Video */
+import VuePlyr from 'vue-plyr';
+import 'vue-plyr/dist/vue-plyr.css';
+Vue.use(VuePlyr);
 
 /** Public components */
 import app from './components/app';
 Vue.component('loading', require('./components/partials/loading'));
-Vue.component('file-upload', require('vue-upload-component'));
 
 /** Fresh vue application */
 const App = new Vue({

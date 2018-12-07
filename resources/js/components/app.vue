@@ -11,7 +11,6 @@
 
     import navbar from './partials/navbar.vue'
     export default {
-
         components: {
             navbar
         }

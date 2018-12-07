@@ -23,7 +23,7 @@ class CourseController extends Controller
     public function show(Course $course)
     {
 
-        $course->load('units.lesson');
+        $course->load('units.lessons');
 
         return new CourseResource($course);
 
@@ -50,11 +50,14 @@ class CourseController extends Controller
     public function update(CourseUpdateRequest $request, Course $course)
     {
 
+
+
         if ($request->hasFile('image')) {
             $course->image = $request->file('image')->store('courses', 'public');
         }
 
         $course->name = $request->name;
+
         $course->description = $request->description;
 
         $course->save();

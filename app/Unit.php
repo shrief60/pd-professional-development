@@ -3,13 +3,15 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Cviebrock\EloquentSluggable\Sluggable;
 
 class Unit extends Model
 {
 
-    protected $fillable = [
-        'name', 'description'
-    ];
+
+    use Sluggable;
+
+    protected $guarded = [];
 
     public function lessons()
     {
@@ -33,12 +35,15 @@ class Unit extends Model
     /**
      * Get the options for generating the slug.
      */
-    public function getSlugOptions() : SlugOptions
+    public function sluggable()
     {
-        return SlugOptions::create()
-            ->generateSlugsFrom('name')
-            ->saveSlugsTo('slug')
-            ->doNotGenerateSlugsOnUpdate();
+        return [
+            'slug' => [
+                'source' => 'name'
+            ]
+        ];
+
     }
+
 
 }

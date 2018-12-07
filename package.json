@@ -20,10 +20,12 @@
         "vue": "^2.5.17"
     },
     "dependencies": {
-        "formidable": "^1.2.1",
+        "bootstrap-vue": "^2.0.0-rc.11",
+        "normalize.css": "^8.0.1",
+        "vue-notification": "^1.3.13",
+        "vue-plyr": "^5.0.4",
         "vue-router": "^3.0.2",
-        "vue-upload-component": "^2.8.16",
-        "vue-video": "^0.1.7",
+        "vue-toasted": "^1.1.26",
         "vuex": "^3.0.1"
     },
     "proxy": "http://discovery.test"

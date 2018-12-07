@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Unit;
 use App\Course;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\Unit as UnitResource;
 use App\Http\Resources\UnitCollection;
-use App\Unit;
+use App\Http\Requests\UnitStoreRequest;
+use App\Http\Requests\UnitUpdateRequest;
+use App\Http\Resources\Unit as UnitResource;
 
 class UnitController extends Controller
 {
@@ -31,7 +33,7 @@ class UnitController extends Controller
         return new UnitResource($unit);
     }
 
-    public function update(UnitUpdateRequest $request)
+    public function update(UnitUpdateRequest $request, Unit $unit)
     {
 
         $unit->update($request->only('name', 'description'));

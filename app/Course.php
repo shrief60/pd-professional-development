@@ -10,14 +10,7 @@ class Course extends Model
 
     use Sluggable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = [
-        'name', 'description', 'educator_id',
-    ];
+    protected $guarded = [];
 
     public function units()
     {
@@ -29,9 +22,9 @@ class Course extends Model
         return $this->hasManyThrough(Lesson::class, Unit::class);
     }
 
-    public function students()
+    public function learner()
     {
-        return $this->belongsToMany(Student::class);
+        return $this->belongsToMany(User::class);
     }
 
     public function educator()

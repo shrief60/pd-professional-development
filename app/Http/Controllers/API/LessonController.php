@@ -14,12 +14,12 @@ class LessonController extends Controller
 
     public function index(Unit $unit)
     {
-        return LessonCollection($unit->lessons);
+        return new LessonCollection($unit->lessons);
     }
 
-    public function show(Lessons $lesson)
+    public function show(Lesson $lesson)
     {
-        return LessonResource($unit);
+        return new LessonResource($lesson->load('questions.answers'));
     }
 
     public function store(LessonStoreRequest $request, Unit $unit)
@@ -27,6 +27,8 @@ class LessonController extends Controller
 
         $lesson = Lesson::make($request->only('title', 'objectives', 'description'));
 
+        // TODO
+        // Upload to Amazon
         $lesson->path = $request->file('lesson')->store('/lessons', 'public');
 
         $lesson = $unit->lessons()->save($lesson);

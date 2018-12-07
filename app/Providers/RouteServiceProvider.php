@@ -16,6 +16,10 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected $namespace = 'App\Http\Controllers';
     protected $apiNamespace = 'App\Http\Controllers\API';
+    protected $educatorNamespace = 'App\Http\Controllers\Educator';
+    protected $mentorNamespace = 'App\Http\Controllers\Mentor';
+    protected $learnerNamespace = 'App\Http\Controllers\Learner';
+    protected $authNamespace = 'App\Http\Controllers\Auth';
 
     /**
      * Define your route model bindings, pattern filters, etc.
@@ -38,9 +42,64 @@ class RouteServiceProvider extends ServiceProvider
     {
         $this->mapApiRoutes();
 
-        $this->mapWebRoutes();
+        $this->mapAuthRoutes();
 
-        //
+        $this->mapAdminRoutes();
+
+        $this->mapLearnerRoutes();
+
+        $this->mapEducatorRoutes();
+
+        $this->mapWebRoutes();
+    }
+
+    /**
+     * Define the "auth" routes for the application.
+     *
+     * These routes all receive session state, CSRF protection, etc.
+     *
+     * @return void
+     */
+    protected function mapAuthRoutes()
+    {
+
+        Route::middleware('web')
+            ->namespace($this->authNamespace)
+            ->group(base_path('routes/auth.php'));
+    }
+    /**
+     * Define the "learner" routes for the application.
+     *
+     * These routes all receive session state, CSRF protection, etc.
+     *
+     * @return void
+     */
+    protected function mapLearnerRoutes()
+    {
+
+        Route::middleware(['web', 'learner', 'auth:learner'])
+            ->name('learner.')
+            ->namespace($this->learnerNamespace)
+            ->group(base_path('routes/learner.php'));
+    }
+
+    /**
+     * Define the "admin" routes for the application.
+     *
+     * These routes all receive session state, CSRF protection, etc.
+     *
+     * @return void
+     */
+    protected function mapAdminRoutes()
+    {
+        Route::group([
+            'middleware' => ['web', 'admin', 'auth:admin'],
+            'domain' => 'admin.' . env('APP_DOMAIN'),
+            'as' => 'admin.',
+            'namespace' => $this->namespace,
+        ], function ($router) {
+            require base_path('routes/admin.php');
+        });
     }
 
     /**
@@ -55,6 +114,13 @@ class RouteServiceProvider extends ServiceProvider
         Route::middleware('web')
              ->namespace($this->namespace)
              ->group(base_path('routes/web.php'));
+    }
+
+    protected function mapEducatorRoutes()
+    {
+        Route::middleware('web')
+             ->namespace($this->educatorNamespace)
+             ->group(base_path('routes/educator.php'));
     }
 
     /**

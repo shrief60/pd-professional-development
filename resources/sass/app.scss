@@ -8,7 +8,19 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
-.navbar-laravel {
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+@import '~normalize.css/normalize.css';
+
+@import '~bootstrap-vue/dist/bootstrap-vue.css';
+
+
+.form-control, .btn, .custom-select {
+    border-radius: 0px;
+    &:focus, &:hover {
+        outline: none;
+        box-shadow: none;
+    }
+}
+
+.btn {
+    min-width: 100px
 }

@@ -12,6 +12,9 @@
                     </h3>
                     <p> {{ course.description }} </p>
 
+                    <p> {{ course.units_count }} Units </p>
+                    <p> {{ course.lessons_count }} Lessons </p>
+
                     <router-link :to="{name: 'units.add', params: {course: course.slug}}"> Add new unit </router-link>
 
                     <router-link :to="{name: 'courses.show', params: {course: course.slug}}"> Show Course </router-link>
@@ -47,4 +50,5 @@
 </script>
 
 <style scoped>
+
 </style>

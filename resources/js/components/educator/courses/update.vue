@@ -27,30 +27,12 @@
         data() {
             return {
                 action: `/api/courses/${this.$route.params.course}`,
-                course: null
+                course: null,
+                name: '',
+                description: ''
             }
         },
 
-        computed: {
-            name:{
-                get: function(){
-                    return this.course ? this.course.name : '';
-
-                },
-                set: function() {
-                    return this.course ? this.course.name : '';
-                }
-            },
-            description:{
-                get: function(){
-                    return this.course ? this.course.description : '';
-
-                },
-                set: function() {
-                    return this.course ? this.course.description : '';
-                }
-            },
-        },
 
         methods: {
             formSubmit(e) {
@@ -59,7 +41,7 @@
                 formData.append('description', this.description);
                 axios.post(this.action, formData)
                     .then(response => {
-                        this.course = response.data.course;
+                        //this.course = response.data.data;
                     })
                     .catch(err => console.log(err));
             }
@@ -70,6 +52,10 @@
             axios.get(this.action)
                  .then(response => {
                         this.course = response.data.data;
+                        this.name = this.course.name;
+                        this.description = this.course.description;
+                    }).catch(_ => {
+                        this.$router.push({name: '404'})
                     });
         }
     }

@@ -28,24 +28,5 @@ class Student extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function courses() {
-        return $this->belongsToMany(Course::class);
-    }
 
-    public function posts() {
-        return $this->morphTo(Post::class, 'owner');
-    }
-    
-    public function comments() {
-        return $this->morphTo(Comment::class, 'owner');
-    }
-
-    public function replies() {
-        return $this->morphTo(Reply::class);
-    }
-
-
-    public function questions() {
-        return $this->hasMany(Question::class);
-    }
 }
