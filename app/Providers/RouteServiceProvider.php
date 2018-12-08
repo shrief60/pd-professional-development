@@ -2,8 +2,8 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Route;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -16,9 +16,9 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected $namespace = 'App\Http\Controllers';
     protected $apiNamespace = 'App\Http\Controllers\API';
-    protected $educatorNamespace = 'App\Http\Controllers\Educator';
     protected $mentorNamespace = 'App\Http\Controllers\Mentor';
     protected $learnerNamespace = 'App\Http\Controllers\Learner';
+    protected $adminNamespace = 'App\Http\Controllers\Admin';
     protected $authNamespace = 'App\Http\Controllers\Auth';
 
     /**
@@ -48,8 +48,6 @@ class RouteServiceProvider extends ServiceProvider
 
         $this->mapLearnerRoutes();
 
-        $this->mapEducatorRoutes();
-
         $this->mapWebRoutes();
     }
 
@@ -77,7 +75,8 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapLearnerRoutes()
     {
 
-        Route::middleware(['web', 'learner', 'auth:learner'])
+        Route::domain(config('app.url'))
+            ->middleware(['web', 'learner', 'auth:learner'])
             ->name('learner.')
             ->namespace($this->learnerNamespace)
             ->group(base_path('routes/learner.php'));
@@ -92,14 +91,12 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapAdminRoutes()
     {
-        Route::group([
-            'middleware' => ['web', 'admin', 'auth:admin'],
-            'domain' => 'admin.' . env('APP_DOMAIN'),
-            'as' => 'admin.',
-            'namespace' => $this->namespace,
-        ], function ($router) {
-            require base_path('routes/admin.php');
-        });
+
+        Route::domain('admin.' . config('app.url'))
+            ->middleware(['web', 'admin', 'auth:admin'])
+            ->name('admin.')
+            ->namespace($this->adminNamespace)
+            ->group(base_path('routes/admin.php'));
     }
 
     /**
@@ -112,15 +109,8 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapWebRoutes()
     {
         Route::middleware('web')
-             ->namespace($this->namespace)
-             ->group(base_path('routes/web.php'));
-    }
-
-    protected function mapEducatorRoutes()
-    {
-        Route::middleware('web')
-             ->namespace($this->educatorNamespace)
-             ->group(base_path('routes/educator.php'));
+            ->namespace($this->namespace)
+            ->group(base_path('routes/web.php'));
     }
 
     /**
@@ -133,8 +123,8 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapApiRoutes()
     {
         Route::prefix('api')
-             ->middleware('api')
-             ->namespace($this->apiNamespace)
-             ->group(base_path('routes/api.php'));
+            ->middleware('api')
+            ->namespace($this->apiNamespace)
+            ->group(base_path('routes/api.php'));
     }
 }

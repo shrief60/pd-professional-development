@@ -18,8 +18,10 @@ class CreateLessonsTable extends Migration
             $table->integer('unit_id')->unsigned();
             $table->string('title');
             $table->string('slug');
-            $table->string('description');
-            $table->string('objectives');
+            $table->text('description');
+            $table->text('objectives');
+            $table->string('lang')->default('en');
+            $table->string('poster')->nullable();
             $table->string('path');
             $table->timestamps();
         });

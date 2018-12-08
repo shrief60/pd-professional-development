@@ -1,5 +1,8 @@
 <?php
 
+use Laravel\Passport\Passport;
+use SMartins\PassportMultiauth\HasMultiAuthApiTokens;
+
 return [
 
     /*
@@ -36,13 +39,24 @@ return [
     */
 
     'guards' => [
+
+
         'admin' => [
             'driver' => 'session',
             'provider' => 'admins',
         ],
+        /* 'admin' => [
+            'driver' => 'passport',
+            'provider' => 'admins',
+        ], */
 
         'learner' => [
             'driver' => 'session',
+            'provider' => 'learners',
+        ],
+
+        'learner' => [
+            'driver' => 'passport',
             'provider' => 'learners',
         ],
 
@@ -112,6 +126,7 @@ return [
     */
 
     'passwords' => [
+
         'admins' => [
             'provider' => 'admins',
             'table' => 'admin_password_resets',

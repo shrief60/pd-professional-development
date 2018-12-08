@@ -19,7 +19,7 @@ class CreateQuestionsTable extends Migration
             $table->text('body');
             $table->string('type');
             $table->integer('grade');
-            $table->string('time');
+            $table->string('lesson_time');
             $table->integer('correct_answer_id')->nullable()->unsigned();
             $table->timestamps();
         });

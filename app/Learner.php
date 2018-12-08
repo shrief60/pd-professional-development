@@ -4,12 +4,12 @@ namespace App;
 
 use App\Notifications\LearnerResetPassword;
 use Illuminate\Notifications\Notifiable;
-use Laravel\Passport\HasApiTokens;
+use SMartins\PassportMultiauth\HasMultiAuthApiTokens;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class Learner extends Authenticatable
 {
-    use Notifiable, HasApiTokens;
+    use Notifiable, HasMultiAuthApiTokens;
 
     /**
      * The attributes that are mass assignable.
@@ -38,5 +38,12 @@ class Learner extends Authenticatable
     public function sendPasswordResetNotification($token)
     {
         $this->notify(new LearnerResetPassword($token));
+    }
+
+    public function findForPassport($value)
+    {
+        $column = filter_var($value, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
+
+        return $this->where($column, $value)->first();
     }
 }

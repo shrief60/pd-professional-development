@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateEducatorsTable extends Migration
+class CreateLearnerQuestionTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,12 @@ class CreateEducatorsTable extends Migration
      */
     public function up()
     {
-        Schema::create('educators', function (Blueprint $table) {
+        Schema::create('learner_question', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('learner_id')->unsigned();
+            $table->integer('question_id')->unsigned();
+            $table->integer('points')->unsigned()->default(0);
+            $table->text('answer');
             $table->timestamps();
         });
     }
@@ -26,6 +30,6 @@ class CreateEducatorsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('educators');
+        Schema::dropIfExists('learner_question');
     }
 }

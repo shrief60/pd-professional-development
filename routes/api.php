@@ -35,3 +35,6 @@ Route::resource('questions', 'QuestionController')->only('destroy', 'show');
 Route::post('question/{question}', 'QuestionController@update')->name('questions.update');
 
 
+
+Route::post('/learner/login', 'Auth\LearnerController@login');
+Route::post('/learner/register', 'Auth\LearnerController@register');

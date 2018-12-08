@@ -16,7 +16,7 @@ class Admin extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'username'
     ];
 
     /**
@@ -37,5 +37,12 @@ class Admin extends Authenticatable
     public function sendPasswordResetNotification($token)
     {
         $this->notify(new AdminResetPassword($token));
+    }
+
+    public function findForPassport($value)
+    {
+        $column = filter_var($value, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
+
+        return $this->where($column, $value)->first();
     }
 }

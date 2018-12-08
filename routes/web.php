@@ -1,5 +1,6 @@
 <?php
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -10,6 +11,8 @@
 | contains the "web" middleware group. Now create something great!
 |
  */
+
+
 
 Route::view('/{any}', 'spa')->where('any', '.*');
 

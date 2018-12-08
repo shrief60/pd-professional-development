@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUnitsTable extends Migration
+class CreateBehaviorsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,12 @@ class CreateUnitsTable extends Migration
      */
     public function up()
     {
-        Schema::create('units', function (Blueprint $table) {
+        Schema::create('behaviors', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('course_id')->unsigned();
-            $table->string('slug');
-            $table->string('name');
-            $table->text('description');
-            $table->string('lang')->default('en');
+            $table->unsignedInteger("statement_id",false, true);
+            $table->foreign('statement_id')->references('id')->on('group_statements')->onDelete('cascade');
+            $table->text('first_lang_behavior');
+            $table->text('second_lang_behavior');
             $table->timestamps();
         });
     }
@@ -31,6 +30,6 @@ class CreateUnitsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('units');
+        Schema::dropIfExists('behaviors');
     }
 }

@@ -27,10 +27,6 @@ class Course extends Model
         return $this->belongsToMany(User::class);
     }
 
-    public function educator()
-    {
-        return $this->belongsTo(Educator::class);
-    }
 
     /*************************************************************************/
     /*                          Route Model Binding                          */

@@ -1,7 +1,7 @@
 @extends('layouts.auth')
 @section('form')
 
-<form action="@yield('form-action')" method="POST">
+<form action="{{ url('/register') }}" method="POST">
 
     @csrf
 
