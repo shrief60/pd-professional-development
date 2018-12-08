@@ -55,7 +55,7 @@ return [
             'provider' => 'learners',
         ],
 
-        'learner' => [
+        'api:learner' => [
             'driver' => 'passport',
             'provider' => 'learners',
         ],

@@ -36,5 +36,9 @@ Route::post('question/{question}', 'QuestionController@update')->name('questions
 
 
 
-Route::post('/learner/login', 'Auth\LearnerController@login');
-Route::post('/learner/register', 'Auth\LearnerController@register');
+
+Route::group(['middleware' => ['api:learner']], function () {
+    Route::post('/learner/login', 'Auth\LearnerController@login');
+    Route::post('/learner/register', 'Auth\LearnerController@register');
+});
+

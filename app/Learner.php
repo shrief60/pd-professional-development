@@ -3,13 +3,15 @@
 namespace App;
 
 use App\Notifications\LearnerResetPassword;
+use Cog\Contracts\Love\Liker\Models\Liker as LikerContract;
+use Cog\Laravel\Love\Liker\Models\Traits\Liker;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use SMartins\PassportMultiauth\HasMultiAuthApiTokens;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Learner extends Authenticatable
+class Learner extends Authenticatable implements LikerContract
 {
-    use Notifiable, HasMultiAuthApiTokens;
+    use Notifiable, HasMultiAuthApiTokens, Liker;
 
     /**
      * The attributes that are mass assignable.
@@ -17,7 +19,7 @@ class Learner extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'username', 'type', 'avatar'
+        'name', 'email', 'password', 'username', 'type', 'avatar',
     ];
 
     /**
