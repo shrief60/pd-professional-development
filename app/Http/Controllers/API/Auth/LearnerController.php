@@ -12,6 +12,7 @@ class LearnerController extends Controller
 {
     public function login(Request $request)
     {
+
         return $this->createUserToken($request->username, $request->password);
     }
 
@@ -22,6 +23,7 @@ class LearnerController extends Controller
             'name' => $request->name,
             'username' => $request->username,
             'email' => $request->email,
+            'type' => $request->type,
             'password' => bcrypt($request->password),
         ]);
 

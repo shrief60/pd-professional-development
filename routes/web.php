@@ -14,5 +14,5 @@
 
 
 
-Route::view('/{any}', 'spa')->where('any', '.*');
+// Route::view('/{any}', 'spa')->where('any', '.*');
 

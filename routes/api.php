@@ -10,7 +10,7 @@
 | is assigned the "api" middleware group. Enjoy building your API!
 |
  */
-
+/*
 
 Route::resource('courses', 'CourseController')->only('index', 'store', 'show', 'destroy');
 // Since FormData doesn't support PUT method, so we are forced to use POST method instead.
@@ -34,11 +34,23 @@ Route::resource('questions', 'QuestionController')->only('destroy', 'show');
 // Since FormData doesn't support PUT method, so we are forced to use POST method instead.
 Route::post('question/{question}', 'QuestionController@update')->name('questions.update');
 
+ */
 
 
+Route::prefix('learner')
+    ->group(function () {
+    Route::post('login', 'Auth\LearnerController@login');
+    Route::post('register', 'Auth\LearnerController@register');
+});
 
+Route::prefix('admin')
+    ->group(function () {
+        Route::post('login', 'Auth\AdminController@login');
+        Route::post('register', 'Auth\AdminController@register');
+    });
+/*
 Route::group(['middleware' => ['api:learner']], function () {
     Route::post('/learner/login', 'Auth\LearnerController@login');
     Route::post('/learner/register', 'Auth\LearnerController@register');
 });
-
+ */

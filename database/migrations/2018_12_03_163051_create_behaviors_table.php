@@ -19,6 +19,10 @@ class CreateBehaviorsTable extends Migration
             $table->foreign('statement_id')->references('id')->on('group_statements')->onDelete('cascade');
             $table->text('first_lang_behavior');
             $table->text('second_lang_behavior');
+            $table->integer('max_self')->unsigned();
+            $table->integer('max_peer')->unsigned();
+            $table->integer('max_mentor')->unsigned();
+
             $table->timestamps();
         });
     }

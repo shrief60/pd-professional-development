@@ -49,6 +49,13 @@
         </div>
     </div>
 
+
+    <select class="custom-select">
+        <option selected disabled> Admin Type </option>
+        <option value="admin"> Admin </option>
+        <option value="educator"> Educator </option>
+    </select>
+
     <button type="submit" class="btn ">SIGN UP</button>
 </form>
 

@@ -50,8 +50,6 @@ class CourseController extends Controller
     public function update(CourseUpdateRequest $request, Course $course)
     {
 
-
-
         if ($request->hasFile('image')) {
             $course->image = $request->file('image')->store('courses', 'public');
         }
@@ -67,7 +65,7 @@ class CourseController extends Controller
 
     public function destroy(Course $course) {
 
-        $destroyed = $course->destroy();
+        $destroyed = $course->delete();
 
         return $destroyed ? response()->json() : response()->json([], 500);
     }
