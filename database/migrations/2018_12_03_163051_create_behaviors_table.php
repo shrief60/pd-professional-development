@@ -15,7 +15,7 @@ class CreateBehaviorsTable extends Migration
     {
         Schema::create('behaviors', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger("statement_id",false, true);
+            $table->unsignedInteger("statement_id");
             $table->foreign('statement_id')->references('id')->on('group_statements')->onDelete('cascade');
             $table->text('first_lang_behavior');
             $table->text('second_lang_behavior');
