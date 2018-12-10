@@ -21,9 +21,8 @@ class CreateGroupStatementsTable extends Migration
             $table->foreign('level_id')->references('id')->on('levels')->onDelete('cascade');
             $table->text('first_lang_statement');
             $table->text('second_lang_statement');
-            $table->boolean('opened')->default(false);
-            $table->boolean('achieved')->default(false);
-            $table->integer('prerequisite');
+            $table->integer('pre_requisite');
+            $table->integer('require_points');
             $table->timestamps();
         });
     }

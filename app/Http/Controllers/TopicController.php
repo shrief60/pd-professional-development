@@ -17,9 +17,7 @@ class TopicController extends Controller
 
     public function index()
     {
-         $topics= Topic::all();
-
-         dd($topics);
+         $topics=Topic::all();
         //return response()->json($data); 
         return view('topic.index',['topics'=>$topics]);
     }

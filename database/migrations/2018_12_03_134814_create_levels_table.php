@@ -17,6 +17,9 @@ class CreateLevelsTable extends Migration
             $table->increments('id');
             $table->string('first_lang_level_name');
             $table->string('second_lang_level_name');
+            $table->integer('self_weight');
+            $table->integer('peer_weight');
+            $table->integer('mentor_weight');
             $table->timestamps();
           });
     }
