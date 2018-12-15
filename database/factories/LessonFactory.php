@@ -7,9 +7,6 @@ $factory->define(App\Lesson::class, function (Faker $faker) {
     $path = $poster = $description = $objectives = $duration = null;
 
     $title = $faker->sentence($nbWords = 3);
-    $unit = App\Unit::inRandomOrder()->first();
-    $unitID = $unit->id;
-    $lessonOrder = $unit->lessonsOrder();
     $type = $faker->randomElement(array('video', 'reading', 'practice'));
 
     if($type == 'video') {
@@ -25,14 +22,13 @@ $factory->define(App\Lesson::class, function (Faker $faker) {
     }
 
     return [
-        'unit_id' => $unitID,
         'title' => $title,
         'slug' => str_slug($title),
         'description' => $description,
         'objectives' => $objectives,
         'path' => $path,
         'poster' => $poster,
-        'order' => $lessonOrder
+        'type' => $type
     ];
 });
 

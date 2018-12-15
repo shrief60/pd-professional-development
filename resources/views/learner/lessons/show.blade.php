@@ -12,9 +12,14 @@
                     @php
                         $isActiveUnit = $courseUnit->id === $lesson->unit->id;
                     @endphp
-                    <span class="unit-number {{ $isActiveUnit ? 'active' : '' }}">
-                        Unit {{ $loop->iteration }}
-                    </span>
+                    <div class="unit-number {{ $isActiveUnit ? 'active' : '' }}">
+                        <span class="text">
+                            Unit {{ $loop->iteration }}
+                        </span>
+                        @if($isActiveUnit)
+                        <span class="circle"></span>
+                        @endif
+                    </div>
                     <span class="unit-name"> {{ $courseUnit->name }} </span>
                     @if($isActiveUnit)
                         <img src="{{ getImageIcon('up-arrow') }}" class="icon unit-toggler"/>
@@ -28,13 +33,22 @@
                         $isActiveLesson = $unitLesson->id === $lesson->id;
                     @endphp
                     <div class="lesson {{ $isActiveLesson ? 'active' : '' }}">
+                        @php
+                            if($unitLesson->isVideo) {
+                                $image = 'play';
+                            } elseif($unitLesson->isReading) {
+                                $image = 'docs';
+                            } elseif($unitLesson->isPractice) {
+                                $image = 'quiz';
+                            }
+                        @endphp
                         @if($isActiveLesson)
                         <span class="pulse animated infinite"></span>
-                        <img class="icon" src="{{ getImageIcon('play') }}"></img>
+                        <img class="icon" src="{{ getImageIcon($image) }}"></img>
                         <span class="lesson-title"> {{ $unitLesson->title }} </span>
                         @else
                         <img src="{{ getImageIcon('correct') }}" class="status">
-                        <img class="icon" src="{{ getImageIcon('play') }}"></img>
+                        <img class="icon" src="{{ getImageIcon($image) }}"></img>
                         <a href="{{ route('learner.lessons.show', ['unit' => $courseUnit, 'course' => $unitLesson]) }}">
                             <span class="lesson-title"> {{ $unitLesson->title }} </span>
                         </a>
@@ -62,12 +76,19 @@
 
         <div class="lesson">
 
+            @if($lesson->isVideo)
             <div class="video">
                 <video poster="{{ $lesson->poster }}" id="player" playsinline controls>
                     <source src="{{ $lesson->path }}" type="video/mp4">
                 </video>
             </div>
+            @elseif($lesson->isReading)
+                <div class="reading">
+                    <embed src="{{ $lesson->path }}" />
+                </div>
+            @elseif($lesson->isPractice)
 
+            @endif
             <div class="details shadow">
                 <h2 class="lesson-title"> {{ $lesson->title }}</h2>
                 <div class="grid">
@@ -164,7 +185,6 @@
 
 @push('scripts')
     <script src="https://cdn.plyr.io/3.4.7/plyr.polyfilled.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.32.2/dist/sweetalert2.all.min.js"></script>
     <script src="{{ asset('js/learner/lessons/show.js') }}"></script>
 @endpush

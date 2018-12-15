@@ -1618,7 +1618,7 @@ main.main aside .unit .unit-details {
   border-bottom: 1px solid #5E636F;
 }
 
-main.main aside .unit .unit-details span {
+main.main aside .unit .unit-details span:not(.circle) {
   text-transform: uppercase;
   color: #fff;
   position: relative;
@@ -1643,14 +1643,26 @@ main.main aside .unit .unit-details .unit-number {
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
+  position: relative;
+  text-transform: uppercase;
+  color: #fff;
+  position: relative;
+  margin-bottom: 0.3rem;
+  height: 25px;
 }
 
-main.main aside .unit .unit-details .unit-number.active:before {
-  content: '';
-  width: 30%;
-  position: absolute;
-  background: green;
+main.main aside .unit .unit-details .unit-number .text {
+  z-index: 10;
+}
+
+main.main aside .unit .unit-details .unit-number .circle {
+  width: 25px;
+  height: 25px;
+  background: #1EA833;
   border-radius: 50%;
+  position: absolute;
+  top: 0px;
+  left: 0px;
 }
 
 main.main aside .unit .unit-lessons {
@@ -1677,45 +1689,45 @@ main.main aside .unit .unit-lessons .lesson .pulse {
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background: #cca92c;
+  background: #F4B400;
   cursor: pointer;
-  -webkit-box-shadow: 0 0 0 rgba(204, 169, 44, 0.4);
-          box-shadow: 0 0 0 rgba(204, 169, 44, 0.4);
+  -webkit-box-shadow: 0 0 0 rgba(244, 180, 0, 0.4);
+          box-shadow: 0 0 0 rgba(244, 180, 0, 0.4);
   -webkit-animation: pulse 2s infinite;
           animation: pulse 2s infinite;
 }
 
 @-webkit-keyframes pulse {
   0% {
-    -webkit-box-shadow: 0 0 0 0 rgba(204, 169, 44, 0.4);
-            box-shadow: 0 0 0 0 rgba(204, 169, 44, 0.4);
+    -webkit-box-shadow: 0 0 0 0 rgba(244, 180, 0, 0.4);
+            box-shadow: 0 0 0 0 rgba(244, 180, 0, 0.4);
   }
 
   70% {
-    -webkit-box-shadow: 0 0 0 10px rgba(204, 169, 44, 0);
-            box-shadow: 0 0 0 10px rgba(204, 169, 44, 0);
+    -webkit-box-shadow: 0 0 0 10px rgba(244, 180, 0, 0);
+            box-shadow: 0 0 0 10px rgba(244, 180, 0, 0);
   }
 
   100% {
-    -webkit-box-shadow: 0 0 0 0 rgba(204, 169, 44, 0);
-            box-shadow: 0 0 0 0 rgba(204, 169, 44, 0);
+    -webkit-box-shadow: 0 0 0 0 rgba(244, 180, 0, 0);
+            box-shadow: 0 0 0 0 rgba(244, 180, 0, 0);
   }
 }
 
 @keyframes pulse {
   0% {
-    -webkit-box-shadow: 0 0 0 0 rgba(204, 169, 44, 0.4);
-            box-shadow: 0 0 0 0 rgba(204, 169, 44, 0.4);
+    -webkit-box-shadow: 0 0 0 0 rgba(244, 180, 0, 0.4);
+            box-shadow: 0 0 0 0 rgba(244, 180, 0, 0.4);
   }
 
   70% {
-    -webkit-box-shadow: 0 0 0 10px rgba(204, 169, 44, 0);
-            box-shadow: 0 0 0 10px rgba(204, 169, 44, 0);
+    -webkit-box-shadow: 0 0 0 10px rgba(244, 180, 0, 0);
+            box-shadow: 0 0 0 10px rgba(244, 180, 0, 0);
   }
 
   100% {
-    -webkit-box-shadow: 0 0 0 0 rgba(204, 169, 44, 0);
-            box-shadow: 0 0 0 0 rgba(204, 169, 44, 0);
+    -webkit-box-shadow: 0 0 0 0 rgba(244, 180, 0, 0);
+            box-shadow: 0 0 0 0 rgba(244, 180, 0, 0);
   }
 }
 
@@ -1778,7 +1790,7 @@ main.main aside .unit .challenges .text {
 main.main aside .certification {
   align-self: end;
   padding: 1rem;
-  border: 2px solid #cca92c;
+  border: 2px solid #F4B400;
   border-radius: 1rem;
   width: 90%;
   margin: 1rem auto 2rem;
@@ -1800,6 +1812,16 @@ main.main aside .certification span {
   font-size: 1.2rem;
   text-transform: uppercase;
   color: #fff;
+}
+
+main.main .content .lesson .reading {
+  height: 80vh;
+}
+
+main.main .content .lesson .reading embed {
+  width: 100%;
+  height: 100%;
+  overflow-y: hidden;
 }
 
 main.main .content .lesson .details {
@@ -1842,7 +1864,7 @@ main.main .content .lesson .footer-tabs .nav-tabs {
 }
 
 main.main .content .lesson .footer-tabs .nav-tabs .nav-item:not(:last-child) .nav-link {
-  border-right: 3px solid #cca92c !important;
+  border-right: 3px solid #F4B400 !important;
 }
 
 main.main .content .lesson .footer-tabs .nav-tabs .nav-link {
@@ -1852,7 +1874,7 @@ main.main .content .lesson .footer-tabs .nav-tabs .nav-link {
 }
 
 main.main .content .lesson .footer-tabs .nav-tabs .nav-link span {
-  color: #cca92c;
+  color: #F4B400;
 }
 
 main.main .content .lesson .footer-tabs .nav-tabs .nav-link:hover {

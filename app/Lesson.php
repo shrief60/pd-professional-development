@@ -69,4 +69,19 @@ class Lesson extends Model
             ],
         ];
     }
+
+    public function getIsVideoAttribute()
+    {
+        return $this->type === 'video';
+    }
+
+    public function getIsReadingAttribute()
+    {
+        return $this->type === 'reading';
+    }
+
+    public function getIsPracticeAttribute()
+    {
+        return $this->type === 'practice';
+    }
 }

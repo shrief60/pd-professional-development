@@ -5,7 +5,7 @@
 $sidebarBackground: #40434A;
 $sidebarBorderColor: #5E636F;
 $bodyBackground: #383A3F;
-
+$gold: #F4B400;
 body {
     background: #383A3F;
 }
@@ -30,7 +30,7 @@ main.main {
                 padding: 1rem 2rem;
                 position: relative;
 
-                span {
+                span:not(.circle) {
                     text-transform: uppercase;
                     color: #fff;
                     position: relative;
@@ -53,15 +53,23 @@ main.main {
                     display: block;
                     letter-spacing: 2px;
                     width: fit-content;
-
-                    &.active {
-                        &:before {
-                            content: '';
-                            width: 30%;
-                            position: absolute;
-                            background: green;
-                            border-radius: 50%
-                        }
+                    position: relative;
+                    text-transform: uppercase;
+                    color: #fff;
+                    position: relative;
+                    margin-bottom: 0.3rem;
+                    height: 25px;
+                    .text {
+                        z-index: 10;
+                    }
+                    .circle {
+                        width: 25px;
+                        height: 25px;
+                        background: #1EA833;
+                        border-radius: 50%;
+                        position: absolute;
+                        top: 0px;
+                        left: 0px;
                     }
                 }
 
@@ -89,26 +97,23 @@ main.main {
                         width: 10px;
                         height: 10px;
                         border-radius: 50%;
-                        background: #cca92c;
+                        background: $gold;
                         cursor: pointer;
-                        box-shadow: 0 0 0 rgba(#cca92c, 0.4);
+                        box-shadow: 0 0 0 rgba($gold, 0.4);
                         animation: pulse 2s infinite;
                     }
 
                     @keyframes pulse {
                         0% {
-                            -moz-box-shadow: 0 0 0 0 rgba(204, 169, 44, 0.4);
-                            box-shadow: 0 0 0 0 rgba(204, 169, 44, 0.4);
+                            box-shadow: 0 0 0 0 rgba($gold, 0.4);
                         }
 
                         70% {
-                            -moz-box-shadow: 0 0 0 10px rgba(204, 169, 44, 0);
-                            box-shadow: 0 0 0 10px rgba(204, 169, 44, 0);
+                            box-shadow: 0 0 0 10px rgba($gold, 0);
                         }
 
                         100% {
-                            -moz-box-shadow: 0 0 0 0 rgba(204, 169, 44, 0);
-                            box-shadow: 0 0 0 0 rgba(204, 169, 44, 0);
+                            box-shadow: 0 0 0 0 rgba($gold, 0);
                         }
                     }
 
@@ -133,8 +138,6 @@ main.main {
                             color: #fff;
                         }
                     }
-
-
                 }
             }
 
@@ -176,7 +179,7 @@ main.main {
         .certification {
             align-self: end;
             padding: 1rem;
-            border: 2px solid #cca92c;
+            border: 2px solid $gold;
             border-radius: 1rem;
             width: 90%;
             margin: 1rem auto 2rem;
@@ -198,6 +201,14 @@ main.main {
     .content {
         .lesson {
 
+            .reading {
+                height: 80vh;
+                embed {
+                    width: 100%;
+                    height: 100%;
+                    overflow-y: hidden;
+                }
+            }
             .details {
                 width: 98%;
                 margin: 1rem auto;
@@ -237,7 +248,7 @@ main.main {
                     .nav-item {
                         &:not(:last-child) {
                             .nav-link {
-                                border-right: 3px solid #cca92c !important;
+                                border-right: 3px solid $gold !important;
                             }
                         }
                     }
@@ -248,7 +259,7 @@ main.main {
                         text-align: center;
 
                         span {
-                            color: #cca92c;
+                            color: $gold;
                         }
 
 

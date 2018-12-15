@@ -14,7 +14,12 @@ class Unit extends Model
 
     public function lessons()
     {
-        return $this->hasMany(Lesson::class);
+        return $this->hasMany(Lesson::class)->oldest('order');
+    }
+
+    public function lessonsReverse()
+    {
+        return $this->hasMany(Lesson::class)->latest('order');
     }
 
     public function course()
@@ -46,7 +51,9 @@ class Unit extends Model
 
     public function lessonsOrder()
     {
-        return ++$this->lessons()->select('order')->latest('order')->first()->order;
+        $lastLesson = $this->lessonsReverse()->select('order')->latest('order')->first();
+
+        return $lastLesson ? $lastLesson->order++ : 1;
     }
 
 
