@@ -175,6 +175,20 @@ class CreditController extends Controller
         return view('credit.show',['credits'=>$credits]);
     }
 
+    /**
+     * Display a listing of the levels.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function friends($teacher_id)
+    {
+        
+        //$credits=Credit::allCredits($teacher_id);
+        $credit=new Credit;
+        $credits=$credit->learner();
+        dd($credits);
+        return view('credit.show',['credits'=>$credits]);
+    }
 
 
 
