@@ -92,38 +92,45 @@ body .content .wrapper .custom-select {
   border-radius: 0px;
 }
 
-body .content .wrapper .input-group {
-  margin-top: 0;
-  margin-bottom: 20px;
+body .content .wrapper .input-group,
+body .content .wrapper .custom-select {
+  margin-bottom: 0;
+  margin-top: 20px;
 }
 
-body .content .wrapper .input-group.input-group-focus * {
+body .content .wrapper .input-group.input-group-focus *,
+body .content .wrapper .custom-select.input-group-focus * {
   background: #ddd !important;
 }
 
-body .content .wrapper .input-group * {
+body .content .wrapper .input-group *,
+body .content .wrapper .custom-select * {
   color: #4b6584;
   border: 0px;
   background: #ddd;
   border-radius: 0px;
 }
 
-body .content .wrapper .input-group .form-control::-webkit-input-placeholder {
+body .content .wrapper .input-group .form-control::-webkit-input-placeholder,
+body .content .wrapper .custom-select .form-control::-webkit-input-placeholder {
   color: #777;
   font-weight: 300;
 }
 
-body .content .wrapper .input-group .form-control::-ms-input-placeholder {
+body .content .wrapper .input-group .form-control::-ms-input-placeholder,
+body .content .wrapper .custom-select .form-control::-ms-input-placeholder {
   color: #777;
   font-weight: 300;
 }
 
-body .content .wrapper .input-group .form-control::placeholder {
+body .content .wrapper .input-group .form-control::placeholder,
+body .content .wrapper .custom-select .form-control::placeholder {
   color: #777;
   font-weight: 300;
 }
 
-body .content .wrapper .input-group .input-group-addon {
+body .content .wrapper .input-group .input-group-addon,
+body .content .wrapper .custom-select .input-group-addon {
   padding-left: 0 !important;
   padding-right: 0 !important;
   width: 40px;
@@ -135,7 +142,8 @@ body .content .wrapper .input-group .input-group-addon {
       align-content: center;
 }
 
-body .content .wrapper .input-group .input-group-addon img {
+body .content .wrapper .input-group .input-group-addon img,
+body .content .wrapper .custom-select .input-group-addon img {
   width: 24px;
   height: 24px;
 }
@@ -185,6 +193,28 @@ body .content .or .bar {
 body .content .or span {
   color: #ccc;
   padding: 0 12px;
+}
+
+body .content .social h3 {
+  text-align: center;
+  color: #4b6584;
+}
+
+body .content .social .links {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+body .content .social .links a {
+  margin: 0 5px 1.5rem;
+}
+
+body .content .social .links a:hover {
+  text-decoration: none;
 }
 
 body .content .auth-switcher {

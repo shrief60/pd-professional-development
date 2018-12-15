@@ -19,9 +19,9 @@ class Question extends Model
         return $this->hasMany(Answer::class);
     }
 
-    public function students()
+    public function learners()
     {
-        return $this->belongsToMany(Student::class);
+        return $this->belongsToMany(Learner::class);
     }
 
 }

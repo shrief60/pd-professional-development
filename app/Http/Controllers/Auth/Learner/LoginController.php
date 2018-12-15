@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Auth\Learner;
 
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use Hesto\MultiAuth\Traits\LogsoutGuard;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
 {
@@ -29,7 +30,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    public $redirectTo = '/';
+    public $redirectTo = '/profile';
 
     /**
      * Create a new controller instance.
@@ -69,7 +70,7 @@ class LoginController extends Controller
     public function username()
     {
 
-        $username = request()->input('login');
+        $username = request()->input('username');
 
         $field = filter_var($username, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
 
@@ -87,5 +88,21 @@ class LoginController extends Controller
     public function logoutToPath()
     {
         return route('learner.login');
+    }
+
+    /**
+     * Validate the user login request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return void
+     *
+     * @throws \Illuminate\Validation\ValidationException
+     */
+    protected function validateLogin(Request $request)
+    {
+        $request->validate([
+            'username' => 'required|string',
+            'password' => 'required|string',
+        ]);
     }
 }

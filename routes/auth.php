@@ -1,7 +1,7 @@
 <?php
 
 Route::domain(config('app.url'))
-    ->namespace ('Learner')
+    ->namespace('Learner')
     ->name('learner.')
     ->group(function () {
         Route::get('/login', 'LoginController@showLoginForm')->name('login');
@@ -18,6 +18,7 @@ Route::domain(config('app.url'))
     });
 
 Route::domain('admin.' . config('app.url'))
+
     ->namespace('Admin')
     ->name('admin.')
     ->group(function () {
@@ -34,3 +35,6 @@ Route::domain('admin.' . config('app.url'))
         Route::get('/password/reset', 'ForgotPasswordController@showLinkRequestForm');
         Route::get('/password/reset/{token}', 'ResetPasswordController@showResetForm');
     });
+
+Route::get('login/{provider}', 'SocialAccountController@redirectToProvider');
+Route::get('login/{provider}/callback', 'SocialAccountController@handleProviderCallback');
