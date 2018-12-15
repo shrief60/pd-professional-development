@@ -52,12 +52,13 @@
 
                 <div class="form-group">
                     <label for="longitude">Require Points</label>
-                    <input type="number"  class="form-control" name="require_points" >
+                    <input type="number"  class="form-control" name="require_points" min="0.00000000000000001" step="0.00000000000000001" >
+
                 </div>
                 
                 <button type="submit" class="btn btn-primary">Create</button>
             </form>
         </div>
-
+ 
     </div>
 @endsection

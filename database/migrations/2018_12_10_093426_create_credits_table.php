@@ -15,13 +15,13 @@ class CreateCreditsTable extends Migration
     {
         Schema::create('credits', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('for_id')->references('id')->on('learners')->onDelete('cascade');
-            $table->integer('from_id')->references('id')->on('learners')->onDelete('cascade');
-
-$table->integer('behavior_id')->references('id')->on('behaviors')->onDelete('cascade');
-
+            $table->unsignedInteger("for_id",false, true);
+            $table->foreign('for_id')->references('id')->on('learners')->onDelete('cascade');
+            $table->unsignedInteger("from_id",false, true);
+            $table->foreign('from_id')->references('id')->on('learners')->onDelete('cascade');
+            $table->unsignedInteger("behavior_id",false, true);
+            $table->foreign('behavior_id')->references('id')->on('behaviors')->onDelete('cascade');
             $table->integer('credit_type');
-
             $table->timestamps();
         });
     }

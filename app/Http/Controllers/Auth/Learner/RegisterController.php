@@ -3,11 +3,14 @@
 namespace App\Http\Controllers\Auth\Learner;
 
 use App\Learner;
+use App\Group_Statement;
+use App\Track;
+
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Http\Request;
 class RegisterController extends Controller
 {
     /*
@@ -72,7 +75,7 @@ class RegisterController extends Controller
             'username' => $data->username,
             'email' => $data->email,
             'password' => bcrypt($data->password),
-            'type' => 'student'
+            'type' => 'teacher'
         ]);
     }
 
@@ -95,4 +98,30 @@ class RegisterController extends Controller
     {
         return Auth::guard('learner');
     }
+
+
+    protected function registered(Request $request , $user)
+    {
+
+        if($user->type != 'teacher') return;
+
+        $teacher_id=$user->id;
+        $statemens=Group_Statement::getStatements();
+        //dd($statemens);
+        $track=array();
+        foreach($statemens as $value){ 
+            $track =[
+                'learner_id' => $teacher_id,
+                'statement_id' => $value->id,
+                'opened'=>'1',
+                'achieved'=> '0',
+                'rest_points'=>$value->require_points
+               ]; 
+               Track::create($track);
+        } 
+        return redirect()->route('tracks.index',[$teacher_id]);
+
+    }
+    
+
 }

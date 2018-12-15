@@ -40,7 +40,7 @@
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <input type="submit" class="btn btn-danger btn-sm" value="Delete"/>
                     </form>
-                    <a class="btn btn-primary btn-sm" href="{{route('objectives.index',$value->id)}}">Show Objectives
+                    <a class="btn btn-primary btn-sm" href="{{route('objectives.show',$value->id)}}">Show Objectives
                         <i class="glyphicon glyphicon-th-large"></i></a>
                 </td>
             </tr>

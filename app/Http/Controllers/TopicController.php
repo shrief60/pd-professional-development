@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -17,8 +16,8 @@ class TopicController extends Controller
 
     public function index()
     {
-         $topics=Topic::all();
-        //return response()->json($data); 
+         $topics= Topic::all();
+        //return response()->json($data);
         return view('topic.index',['topics'=>$topics]);
     }
 
@@ -56,7 +55,7 @@ class TopicController extends Controller
     }
 
 
-    
+
     /**
      * Show the form for editing the specified resource.
      *

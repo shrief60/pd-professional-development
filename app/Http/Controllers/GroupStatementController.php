@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Group_Statement;
 use App\Level;
+use App\Track;
+
 use Validator;
 
 
@@ -32,7 +34,8 @@ class GroupStatementController extends Controller
      */
     public function create($objective_id)
     {
-        $statements=Group_Statement::all();
+        $statements=Group_Statement::all();     
+        //$statements=Group_Statement::getObjectiveStatements($objective_id);
         $levels=Level::all();
         return view('statement.create',['objective_id'=>$objective_id,'levels'=>$levels ,'statements'=>$statements ]);
     }
@@ -70,11 +73,14 @@ class GroupStatementController extends Controller
     public function edit($statement_id)
     {    
         $statement=Group_Statement::find($statement_id);
+        $objective_id=$statement->objective_id;
         if( $statement['pre_requisite']!=-1){
-            $statements=Group_Statement::exceptStatement($statement_id);
+            $statements=Group_Statement::exceptStatement($statement_id,$objective_id);
         }
         else {
+            //$statements=Group_Statement::getObjectiveStatements($objective_id);   
             $statements=Group_Statement::all();   
+
         }
 
         $levels=Level::all();
@@ -121,4 +127,16 @@ class GroupStatementController extends Controller
         
         return redirect()->route('statements.index',$objective_id)->with('success', 'statement has been deleted!!');
     }
-}
+
+/**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function framework($teacher_id)
+    {
+        $tracks=Track::AllStatementsInTrack($teacher_id);
+        $statements=Group_Statement::showFrameWork($teacher_id);
+        dd($statements);
+        //return view('statement.framework',['statements'=>$statements ,'tracks'=>$tracks ,'teacher_id'=>$teacher_id]);
+    }}

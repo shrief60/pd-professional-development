@@ -21,6 +21,8 @@ class Objective extends Model
             return $objective;
 
     }
-    public function GroupStatement(){
+
+    public function groupStatements(){
         return $this->hasMany('App\Group_Statement'); 
-    }}
+    }
+}

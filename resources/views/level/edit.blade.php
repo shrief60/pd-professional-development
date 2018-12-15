@@ -18,15 +18,15 @@
                 </div>
                 <div class="form-group">
                     <label for="longitude">Self Weight</label>
-                    <input type="number"  class="form-control" name="self_weight" value='{{$level->self_weight}}' >
+                    <input type="number"  class="form-control" name="self_weight"min="0.00000000000000001" step="0.00000000000000001" value='{{$level->self_weight}}' >
                 </div>
                 <div class="form-group">
                     <label for="longitude">Peer Weight</label>
-                    <input type="number"  class="form-control" name="peer_weight" value='{{$level->peer_weight}}' >
+                    <input type="number"  class="form-control" name="peer_weight" min="0.00000000000000001" step="0.00000000000000001" value='{{$level->peer_weight}}' >
                 </div>
                 <div class="form-group">
                     <label for="longitude">Mentor Weight</label>
-                    <input type="number"  class="form-control" name="mentor_weight" value='{{$level->mentor_weight}}' >
+                    <input type="number"  class="form-control" name="mentor_weight" min="0.00000000000000001" step="0.00000000000000001" value='{{$level->mentor_weight}}' >
                 </div>
 
                 <button type="submit" class="btn btn-primary">Update</button>

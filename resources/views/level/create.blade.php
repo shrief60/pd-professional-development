@@ -19,15 +19,15 @@
                 
                 <div class="form-group">
                     <label for="longitude">Self Weight</label>
-                    <input type="number"  class="form-control" name="self_weight" >
+                    <input type="number"  class="form-control" name="self_weight"  step="0.00000000000000001" >
                 </div>
                 <div class="form-group">
                     <label for="longitude">Peer Weight</label>
-                    <input type="number"  class="form-control" name="peer_weight" >
+                    <input type="number"  class="form-control" name="peer_weight"  step="0.00000000000000001" >
                 </div>
                 <div class="form-group">
                     <label for="longitude">Mentor Weight</label>
-                    <input type="number"  class="form-control" name="mentor_weight" >
+                    <input type="number"  class="form-control" name="mentor_weight"  step="0.00000000000000001" >
                 </div>
                 <button type="submit" class="btn btn-primary">Create</button>
             </form>

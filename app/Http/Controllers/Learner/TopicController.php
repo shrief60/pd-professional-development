@@ -19,8 +19,6 @@ class TopicController extends Controller
     {
          $topics= Topic::all();
 
-         dd($topics);
-        //return response()->json($data); 
         return view('topic.index',['topics'=>$topics]);
     }
 
@@ -58,7 +56,7 @@ class TopicController extends Controller
     }
 
 
-    
+
     /**
      * Show the form for editing the specified resource.
      *

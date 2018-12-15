@@ -22,7 +22,7 @@ class CreateGroupStatementsTable extends Migration
             $table->text('first_lang_statement');
             $table->text('second_lang_statement');
             $table->integer('pre_requisite');
-            $table->integer('require_points');
+            $table->double('require_points');
             $table->timestamps();
         });
     }
