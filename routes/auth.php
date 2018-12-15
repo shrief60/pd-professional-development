@@ -1,13 +1,12 @@
 <?php
 
-Route::domain(config('app.url'))
-    ->namespace ('Learner')
+Route::namespace ('Learner')
     ->name('learner.')
     ->group(function () {
         Route::get('/login', 'LoginController@showLoginForm')->name('login');
         Route::post('/login', 'LoginController@login')->name('login.store');
         Route::any('/logout', 'LoginController@logout')->name('logout');
-
+        
         Route::get('/register', 'RegisterController@showRegistrationForm')->name('register');
         Route::post('/register', 'RegisterController@register')->name('register.store');
 

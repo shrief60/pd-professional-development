@@ -8,17 +8,29 @@ use App\Objective ;
 class ObjectiveController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the resource
      *      * @param  int  $topic_id
 
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($topic_id)
+    public function index()
     {
-    
+        $objectives=Objective::all();
+        return view('objective.index',['objectives'=>$objectives ]);
+    }
+
+    /**
+     * Display a listing of the resource
+     *      * @param  int  $topic_id
+
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function show($topic_id)
+    {
         $objectives=Objective::objectiveInTopic($topic_id);
-        return view('objective.index',['objectives'=>$objectives , 'topic_id'=>$topic_id]);
+        return view('objective.show',['objectives'=>$objectives , 'topic_id'=>$topic_id]);
     }
 
     /**
@@ -46,7 +58,7 @@ class ObjectiveController extends Controller
 
         ]);
         Objective::create($request->all());
-        return redirect()->route('objectives.index',['topic_id'=>$topic_id]);  
+        return redirect()->route('objectives.show',['topic_id'=>$topic_id]);  
 
     }
 
@@ -81,7 +93,7 @@ class ObjectiveController extends Controller
 
         $objective=Objective::find($objective_id);
         $objective->update($request->all());
-        return redirect()->route('objectives.index',['topic_id'=>$topic_id]);  
+        return redirect()->route('objectives.show',['topic_id'=>$topic_id]);  
     }
 
     /**
@@ -95,6 +107,6 @@ class ObjectiveController extends Controller
     public function destroy($topic_id,$objective_id)
     {
         Objective::find($objective_id)->delete();
-        return redirect()->route('objectives.index',$topic_id)->with('success', 'level has been deleted!!');
+        return redirect()->route('objectives.show',$topic_id)->with('success', 'level has been deleted!!');
     }
 }
