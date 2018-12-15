@@ -11,7 +11,7 @@
 
                 <div class="form-group">
                     <label for="image">Image</label>
-                    <input type="file"  class="form-control" name="image" >
+                    <input type="file"  class="form-control" name="image" multiple >
                 </div>
 
                 <div class="form-group">

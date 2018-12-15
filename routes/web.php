@@ -82,3 +82,4 @@ Route::get('/progress/create/{id}/{statement_id}/{teacher_id}', 'ProgressControl
 /* For Credit Contoller */
 Route::get('/credits/create/{behavior_id}/{teacher_id}', 'CreditController@create')->name('credit.create');
 Route::post('/credits/create/{behavior_id}/{teacher_id}', 'CreditController@store');
+Route::get('/credits/show/{teacher_id}', 'CreditController@show')->name('credit.show');

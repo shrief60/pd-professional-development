@@ -18,4 +18,16 @@ class Credit extends Model
     public function behavior(){
         return $this->belongsTo('App\Behavior', 'id');
     }
+
+    public static function  allCredits($teacher_id){
+        $progress= DB::table('credits')
+        ->join('evidences', 'evidences.id', '=', 'credits.id')
+        ->where('credits.for_id', $teacher_id)
+        ->select('evidences.*','credits.*')
+        ->get();
+        return $progress;
+
+    }
+
+
 }
