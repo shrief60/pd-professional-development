@@ -30,7 +30,6 @@
                     <div class="lesson {{ $isActiveLesson ? 'active' : '' }}">
                         @if($isActiveLesson)
                         <span class="pulse animated infinite"></span>
-                        @if
                         <img class="icon" src="{{ getImageIcon('play') }}"></img>
                         <span class="lesson-title"> {{ $unitLesson->title }} </span>
                         @else
@@ -63,17 +62,11 @@
 
         <div class="lesson">
 
-            @if($lesson->isVideo)
             <div class="video">
                 <video poster="{{ $lesson->poster }}" id="player" playsinline controls>
                     <source src="{{ $lesson->path }}" type="video/mp4">
                 </video>
             </div>
-            @elseif($lesson->isReading)
-
-            @elseif($lesson->isPractice)
-
-            @endif
 
             <div class="details shadow">
                 <h2 class="lesson-title"> {{ $lesson->title }}</h2>

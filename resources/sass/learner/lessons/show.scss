@@ -1,0 +1,348 @@
+@import '../../variables';
+
+@import '~plyr/src/sass/plyr';
+
+$sidebarBackground: #40434A;
+$sidebarBorderColor: #5E636F;
+$bodyBackground: #383A3F;
+
+body {
+    background: #383A3F;
+}
+
+main.main {
+    display: grid;
+    grid-template-columns: 300px auto;
+
+    aside {
+        background: $sidebarBackground;
+        display: grid;
+        $blue: #4285F4;
+
+        .units {
+            align-self: start;
+        }
+
+        .unit {
+            border-bottom: 1px solid $sidebarBorderColor;
+
+            .unit-details {
+                padding: 1rem 2rem;
+                position: relative;
+
+                span {
+                    text-transform: uppercase;
+                    color: #fff;
+                    position: relative;
+                    margin-bottom: 0.3rem;
+                }
+
+                .unit-toggler {
+                    position: absolute;
+                    color: #fff;
+                    top: 20px;
+                    right: 10px;
+                    cursor: pointer;
+                    width: 20px;
+                }
+
+                .unit-number {
+                    padding: 0.1rem 0.75rem;
+                    border-radius: 2rem;
+                    background: $blue;
+                    display: block;
+                    letter-spacing: 2px;
+                    width: fit-content;
+
+                    &.active {
+                        &:before {
+                            content: '';
+                            width: 30%;
+                            position: absolute;
+                            background: green;
+                            border-radius: 50%
+                        }
+                    }
+                }
+
+                border-bottom: 1px solid $sidebarBorderColor;
+            }
+
+            .unit-lessons {
+                display: none;
+
+                &.show {
+                    display: grid;
+                }
+
+                padding: 1rem 0;
+
+                .lesson {
+                    padding-left: 1rem;
+                    margin-bottom: 1rem;
+                    display: grid;
+                    grid-template-columns: 25px 30px auto;
+                    align-items: center;
+
+                    .pulse {
+                        display: inline-block;
+                        width: 10px;
+                        height: 10px;
+                        border-radius: 50%;
+                        background: #cca92c;
+                        cursor: pointer;
+                        box-shadow: 0 0 0 rgba(#cca92c, 0.4);
+                        animation: pulse 2s infinite;
+                    }
+
+                    @keyframes pulse {
+                        0% {
+                            -moz-box-shadow: 0 0 0 0 rgba(204, 169, 44, 0.4);
+                            box-shadow: 0 0 0 0 rgba(204, 169, 44, 0.4);
+                        }
+
+                        70% {
+                            -moz-box-shadow: 0 0 0 10px rgba(204, 169, 44, 0);
+                            box-shadow: 0 0 0 10px rgba(204, 169, 44, 0);
+                        }
+
+                        100% {
+                            -moz-box-shadow: 0 0 0 0 rgba(204, 169, 44, 0);
+                            box-shadow: 0 0 0 0 rgba(204, 169, 44, 0);
+                        }
+                    }
+
+                    img {
+                        width: 20px;
+                    }
+
+                    a {
+                        text-decoration: none;
+                    }
+
+                    span {
+                        color: lighten($sidebarBorderColor, 20);
+
+                        &:hover {
+                            color: lighten($sidebarBorderColor, 30);
+                        }
+                    }
+
+                    &.active {
+                        span {
+                            color: #fff;
+                        }
+                    }
+
+
+                }
+            }
+
+            .challenges {
+                display: grid;
+                grid-template-columns: 50px 1fr 1fr;
+                align-items: center;
+                margin-bottom: 1rem;
+                padding: 0.5rem 0;
+                background: $blue;
+                width: 95%;
+                border-radius: 0 1.2rem 1.2rem 0;
+
+                span {
+                    text-align: center;
+                }
+
+                * {
+                    color: #fff;
+                }
+
+                img {
+                    width: 32px;
+                    justify-self: center;
+                }
+
+                .title {
+                    font-size: 1.2rem;
+                    text-transform: uppercase;
+                    border-right: 1px solid #fff;
+                }
+
+                .text {
+                    text-transform: capitalize;
+                }
+            }
+        }
+
+        .certification {
+            align-self: end;
+            padding: 1rem;
+            border: 2px solid #cca92c;
+            border-radius: 1rem;
+            width: 90%;
+            margin: 1rem auto 2rem;
+            display: grid;
+            grid-template-columns: 80px auto;
+            align-items: center;
+            justify-content: center;
+            img {
+                height: 70px;
+            }
+            span {
+                font-size: 1.2rem;
+                text-transform: uppercase;
+                color: #fff;
+            }
+        }
+    }
+
+    .content {
+        .lesson {
+
+            .details {
+                width: 98%;
+                margin: 1rem auto;
+                background: $sidebarBackground;
+                padding: 1.5rem;
+
+                .lesson-title {
+                    color: #fff;
+                }
+
+                .grid {
+                    margin-top: 2rem;
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+                    grid-gap: 2rem;
+
+                    * {
+                        color: #eee;
+                    }
+
+                    .section-title {
+                        text-transform: uppercase;
+                    }
+                }
+
+                border-radius: 5px;
+            }
+
+            .footer-tabs {
+                width: 98%;
+                margin: 1rem auto;
+                .nav-tabs {
+                    border: 0;
+                    margin-bottom: 2px;
+                    background: $sidebarBackground;
+                    padding-left: 2rem;
+                    .nav-item {
+                        &:not(:last-child) {
+                            .nav-link {
+                                border-right: 3px solid #cca92c !important;
+                            }
+                        }
+                    }
+
+                    .nav-link {
+                        color: lighten($sidebarBorderColor, 20);
+                        border: 0px;
+                        text-align: center;
+
+                        span {
+                            color: #cca92c;
+                        }
+
+
+
+                        &:hover {
+                            color: lighten($sidebarBorderColor, 30);
+                            border: 0px;
+                        }
+
+                        &.active {
+                            color: #fff;
+                            background: transparent;
+
+                        }
+                    }
+                }
+
+                .tab-content {
+                    #comments {
+                        .comment {
+                            background: $sidebarBackground;
+                            margin-bottom: 1rem;
+
+                            .info {
+                                padding: 1rem;
+                                display: grid;
+                                grid-template-columns: 100px auto;
+                                border-bottom: 2px solid #383A3F;
+                                align-items: center;
+
+                                .user {
+                                    text-align: center;
+
+                                    img {
+                                        width: 75px;
+                                        border-radius: 50%;
+                                        border: 2px solid #ddd;
+                                        display: block;
+                                        margin: 3px auto;
+                                    }
+
+                                    span {
+                                        color: #fff;
+                                        font-weight: 500;
+                                        font-size: 18px;
+                                    }
+                                }
+
+                                .body {
+                                    color: #fff;
+                                    padding: 0 3rem;
+                                }
+                            }
+
+                            .meta {
+                                display: grid;
+                                grid-template-columns: 1fr 1fr;
+                                align-items: center;
+
+                                .left {
+                                    justify-self: start;
+
+                                    .date {
+                                        color: lighten($sidebarBorderColor, 30);
+                                        padding: 0.5rem 1rem;
+                                    }
+                                }
+
+                                .right {
+                                    justify-self: end;
+                                    display: grid;
+                                    grid-template-columns: 1fr 1fr;
+
+                                    >div {
+                                        img {
+                                            width: 20px;
+                                            margin-right: 5px;
+                                        }
+
+                                        span {
+                                            color: #fff;
+                                            font-size: 16px;
+                                        }
+
+                                        padding: 0.5rem 1rem;
+                                        border-left: 1px solid $bodyBackground;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+        }
+    }
+}

@@ -76,7 +76,7 @@ class RouteServiceProvider extends ServiceProvider
     {
 
         Route::domain(config('app.url'))
-            ->middleware(['web', 'learner', 'auth:learner'])
+            //->middleware(['web', 'learner', 'auth:learner'])
             ->name('learner.')
             ->namespace($this->learnerNamespace)
             ->group(base_path('routes/learner.php'));
