@@ -15,7 +15,7 @@ class CreateQuestionsTable extends Migration
     {
         Schema::create('questions', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('lesson_id')->unsigned();
+            $table->morphs('questionable');
             $table->text('body');
             $table->enum('type', ['mcq', 'ai', 'text'])->default('mcq');
             $table->integer('grade')->unsigned();

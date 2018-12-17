@@ -22,6 +22,11 @@ class Unit extends Model
         return $this->hasMany(Lesson::class)->latest('order');
     }
 
+    public function questions()
+    {
+        return $this->morphMany(Question::class, 'questionable');
+    }
+
     public function course()
     {
         return $this->belongsTo(Course::class);

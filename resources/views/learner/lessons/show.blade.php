@@ -37,18 +37,18 @@
                             if($unitLesson->isVideo) {
                                 $image = 'play';
                             } elseif($unitLesson->isReading) {
-                                $image = 'docs';
+                                $image = 'reading';
                             } elseif($unitLesson->isPractice) {
-                                $image = 'quiz';
+                                $image = 'practice';
                             }
                         @endphp
                         @if($isActiveLesson)
                         <span class="pulse animated infinite"></span>
-                        <img class="icon" src="{{ getImageIcon($image) }}"></img>
+                        <img class="icon" src="{{ getImageIcon($image, 'svg') }}"></img>
                         <span class="lesson-title"> {{ $unitLesson->title }} </span>
                         @else
                         <img src="{{ getImageIcon('correct') }}" class="status">
-                        <img class="icon" src="{{ getImageIcon($image) }}"></img>
+                        <img class="icon" src="{{ getImageIcon($image, 'svg') }}"></img>
                         <a href="{{ route('learner.lessons.show', ['unit' => $courseUnit, 'course' => $unitLesson]) }}">
                             <span class="lesson-title"> {{ $unitLesson->title }} </span>
                         </a>
@@ -108,17 +108,17 @@
                 <ul class="nav nav-tabs shadow" id="footer-tabs" role="tablist">
                     <li class="nav-item">
                         <a class="nav-link active" id="comments-tab" data-toggle="tab" href="#comments">
-                            Questions <span>(10)</span>
+                            Questions <span>(</span>10<span>)</span>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" id="ideas-tab" data-toggle="tab" href="#ideas">
-                            Ideas <span>(10)</span>
+                            Ideas <span>(</span>10<span>)</span>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" id="resources-tab" data-toggle="tab" href="#resources">
-                            Extra Resources <span>(10)</span>
+                            Extra Resources <span>(</span>10<span>)</span>
                         </a>
                     </li>
                 </ul>

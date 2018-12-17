@@ -46,11 +46,15 @@ main.main {
                     width: 20px;
                 }
 
+                .unit-name {
+                    font-size: 22px;
+                }
+
                 .unit-number {
                     padding: 0.1rem 0.75rem;
                     border-radius: 2rem;
                     background: $blue;
-                    display: block;
+                    display: flex;
                     letter-spacing: 2px;
                     width: fit-content;
                     position: relative;
@@ -58,13 +62,15 @@ main.main {
                     color: #fff;
                     position: relative;
                     margin-bottom: 0.3rem;
-                    height: 25px;
+                    height: 30px;
                     .text {
                         z-index: 10;
+                        margin: 0;
+                        align-self: center;
                     }
                     .circle {
-                        width: 25px;
-                        height: 25px;
+                        width: 30px;
+                        height: 100%;
                         background: #1EA833;
                         border-radius: 50%;
                         position: absolute;
@@ -87,7 +93,8 @@ main.main {
 
                 .lesson {
                     padding-left: 1rem;
-                    margin-bottom: 1rem;
+                    margin-bottom: 2rem;
+                    font-size: 1.2rem;
                     display: grid;
                     grid-template-columns: 25px 30px auto;
                     align-items: center;
@@ -248,7 +255,7 @@ main.main {
                     .nav-item {
                         &:not(:last-child) {
                             .nav-link {
-                                border-right: 3px solid $gold !important;
+                                //border-right: 3px solid $gold !important;
                             }
                         }
                     }
@@ -257,11 +264,21 @@ main.main {
                         color: lighten($sidebarBorderColor, 20);
                         border: 0px;
                         text-align: center;
+                        position: relative;
 
                         span {
                             color: $gold;
                         }
 
+                        &:after {
+                            content: "";
+                            position: absolute;
+                            left: 0;
+                            top: 34%;
+                            width: 3px;
+                            height: 12px;
+                            background: $gold !important
+                        }
 
 
                         &:hover {

@@ -9,9 +9,9 @@ class Question extends Model
 
     protected $guarded = [];
 
-    public function lesson()
+    public function questionable()
     {
-        return $this->belongsTo(Lesson::class);
+        return $this->morphTo();
     }
 
     public function answers()

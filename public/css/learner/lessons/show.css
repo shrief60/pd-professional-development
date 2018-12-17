@@ -1634,11 +1634,17 @@ main.main aside .unit .unit-details .unit-toggler {
   width: 20px;
 }
 
+main.main aside .unit .unit-details .unit-name {
+  font-size: 22px;
+}
+
 main.main aside .unit .unit-details .unit-number {
   padding: 0.1rem 0.75rem;
   border-radius: 2rem;
   background: #4285F4;
-  display: block;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   letter-spacing: 2px;
   width: -webkit-fit-content;
   width: -moz-fit-content;
@@ -1648,16 +1654,19 @@ main.main aside .unit .unit-details .unit-number {
   color: #fff;
   position: relative;
   margin-bottom: 0.3rem;
-  height: 25px;
+  height: 30px;
 }
 
 main.main aside .unit .unit-details .unit-number .text {
   z-index: 10;
+  margin: 0;
+  -ms-flex-item-align: center;
+      align-self: center;
 }
 
 main.main aside .unit .unit-details .unit-number .circle {
-  width: 25px;
-  height: 25px;
+  width: 30px;
+  height: 100%;
   background: #1EA833;
   border-radius: 50%;
   position: absolute;
@@ -1676,7 +1685,8 @@ main.main aside .unit .unit-lessons.show {
 
 main.main aside .unit .unit-lessons .lesson {
   padding-left: 1rem;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
+  font-size: 1.2rem;
   display: grid;
   grid-template-columns: 25px 30px auto;
   -webkit-box-align: center;
@@ -1863,18 +1873,25 @@ main.main .content .lesson .footer-tabs .nav-tabs {
   padding-left: 2rem;
 }
 
-main.main .content .lesson .footer-tabs .nav-tabs .nav-item:not(:last-child) .nav-link {
-  border-right: 3px solid #F4B400 !important;
-}
-
 main.main .content .lesson .footer-tabs .nav-tabs .nav-link {
   color: #9196a2;
   border: 0px;
   text-align: center;
+  position: relative;
 }
 
 main.main .content .lesson .footer-tabs .nav-tabs .nav-link span {
   color: #F4B400;
+}
+
+main.main .content .lesson .footer-tabs .nav-tabs .nav-link:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 34%;
+  width: 3px;
+  height: 12px;
+  background: #F4B400 !important;
 }
 
 main.main .content .lesson .footer-tabs .nav-tabs .nav-link:hover {
