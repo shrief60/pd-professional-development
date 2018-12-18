@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
             CoursesTableSeeder::class,
             UnitsTableSeeder::class,
             LessonsTableSeeder::class,
+            LessonPracticeSeeder::class
         ]);
     }
 }

@@ -17,6 +17,14 @@ if (!function_exists('getImageIcon')) {
     }
 }
 
+if (!function_exists('icon')) {
+
+    function icon($path, $ext = 'png')
+    {
+        return asset("/images/icons/$path.$ext");
+    }
+}
+
 if (!function_exists('img')) {
 
     function img($path, $ext = 'png')
@@ -29,7 +37,7 @@ if (!function_exists('css')) {
 
     function css($path)
     {
-        return asset("/css/$path.css");
+        return "<link rel='stylesheet' href=" . asset("/css/$path.css") . "/>";
     }
 }
 
@@ -37,6 +45,6 @@ if (!function_exists('js')) {
 
     function js($path)
     {
-        return "<script src='asset(`/js/$path.js`)'></script>";
+        return "<script src=" . asset("/js/$path.js") . "></script>";
     }
 }

@@ -17,3 +17,5 @@ mix.js('resources/js/app.js', 'public/js')
 mix.sass('resources/sass/auth.scss', 'public/css/auth');
 
 mix.sass('resources/sass/learner/lessons/show.scss', 'public/css/learner/lessons');
+
+mix.sass('resources/sass/learner/home.scss', 'public/css/learner');

@@ -1,0 +1,288 @@
+body {
+  background: #383A3F;
+}
+
+body #main-navbar {
+  border-bottom: 1px solid #777;
+}
+
+main.main {
+  display: grid;
+  grid-template-columns: 300px auto 300px;
+  grid-gap: 1rem;
+  margin-top: 1rem;
+  padding: 0 1rem;
+}
+
+@media screen and (max-width: 992px) {
+  main.main {
+    grid-template-columns: 1fr;
+  }
+}
+
+main.main aside.left {
+  background: #40434A;
+  min-height: 80vh;
+}
+
+main.main aside.left .header {
+  display: grid;
+  grid-template-columns: 70px auto;
+  grid-gap: 1rem;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 1rem;
+}
+
+main.main aside.left .header img {
+  width: 100%;
+  height: auto;
+  border-radius: 50%;
+  border: 3px solid #ddd;
+}
+
+main.main aside.left .header .info * {
+  color: #fff;
+}
+
+main.main aside.left .header .info p {
+  margin-bottom: 0px;
+}
+
+main.main aside.left .header .info .grey {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+main.main aside.left .header .info .grey span {
+  color: #777;
+}
+
+main.main aside.left .header .info .grey .square {
+  width: 5px;
+  height: 5px;
+  background: #F4B400;
+  display: inline-block;
+  margin-right: 10px;
+}
+
+main.main aside.left .middle {
+  padding: 2rem 0;
+}
+
+main.main aside.left .links {
+  list-style: none;
+  padding: 0px;
+}
+
+main.main aside.left .links li {
+  display: grid;
+  grid-template-columns: 30px auto;
+  grid-gap: 20px;
+  padding-left: 20px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+main.main aside.left .links li svg {
+  width: 25px;
+  fill: #76787d;
+}
+
+main.main aside.left .links li a {
+  margin: 0;
+  color: #76787d;
+  text-transform: uppercase;
+  font-size: 1rem;
+}
+
+main.main aside.left .links li a:hover {
+  text-decoration: none;
+}
+
+main.main aside.left .links li.active a {
+  color: #F4B400;
+}
+
+main.main aside.left .links li.active svg {
+  fill: #F4B400 !important;
+}
+
+main.main aside.left .links li.active:before {
+  content: '';
+  position: absolute;
+  height: 100%;
+  background: #F4B400;
+  width: 4px;
+}
+
+main.main aside.left .footer {
+  border-top: 1px solid #383A3F;
+  padding-top: 1rem;
+}
+
+main.main .courses-section {
+  padding-top: 0.8rem;
+}
+
+main.main .courses-section .title {
+  color: #fff;
+  text-transform: uppercase;
+  display: inline-block;
+  margin: 0;
+  padding-right: 1rem;
+  border-right: 3px solid #F4B400;
+  line-height: 0.8;
+}
+
+main.main .courses-section .courses {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 1rem;
+}
+
+main.main .courses-section .courses .course {
+  padding: 0.6rem;
+  background: #40434A;
+}
+
+main.main .courses-section .courses .course .image {
+  width: 100%;
+  height: 300px;
+  background-position: center;
+  background-size: cover;
+}
+
+main.main .courses-section .courses .course hr {
+  width: 30%;
+  height: 3px;
+  background: #F4B400;
+  margin-left: 0px;
+}
+
+main.main .courses-section .courses .course .body {
+  display: grid;
+  min-height: 150px;
+}
+
+main.main .courses-section .courses .course .body .name {
+  font-size: 2rem;
+  color: #fff;
+}
+
+main.main .courses-section .courses .course .body .btn {
+  margin: 1rem 0;
+  width: 170px;
+  border-radius: 4rem;
+  border: 2px solid #F4B400;
+  color: #fff;
+  -ms-flex-item-align: end;
+      align-self: end;
+}
+
+main.main .courses-section .courses .course .body .btn.resume {
+  background: transparent;
+}
+
+main.main .courses-section .courses .course .body .btn.start {
+  background: #F4B400;
+}
+
+main.main aside.right {
+  margin-top: 4rem;
+  background: #40434A;
+  -ms-flex-item-align: start;
+      align-self: flex-start;
+}
+
+main.main aside.right .header {
+  font-size: 1.2rem;
+  color: #fff;
+  margin: 0;
+  padding: 0.7rem 1rem 0.7rem 1.5rem;
+  text-transform: uppercase;
+  position: relative;
+}
+
+main.main aside.right .header:before {
+  content: '';
+  position: absolute;
+  height: 20px;
+  background: #F4B400;
+  width: 20px;
+  left: -10px;
+  top: 50%;
+  -webkit-transform: translate(0, -50%);
+          transform: translate(0, -50%);
+}
+
+main.main aside.right .body {
+  border-top: 1px solid #383A3F;
+  border-bottom: 1px solid #383A3F;
+  padding: 1rem 2rem;
+}
+
+main.main aside.right .body span {
+  padding: 0.1rem 0.75rem;
+  border-radius: 2rem;
+  background: #4285F4;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  letter-spacing: 2px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  position: relative;
+  text-transform: uppercase;
+  color: #fff;
+  position: relative;
+  margin-bottom: 0.3rem;
+}
+
+main.main aside.right .body p {
+  color: #fff;
+  font-size: 20px;
+  width: 60%;
+}
+
+main.main aside.right .footer {
+  padding: 1rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  justify-items: center;
+}
+
+main.main aside.right .footer > div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+main.main aside.right .footer > div span {
+  color: #fff;
+  margin-left: 10px;
+}
+
+main.main aside.right .footer > div svg {
+  fill: #F4B400;
+  width: 20px;
+}
+

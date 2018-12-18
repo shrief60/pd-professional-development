@@ -1,7 +1,6 @@
 <?php
 
-Route::domain(config('app.url'))
-    ->namespace('Learner')
+Route::namespace('Learner')
     ->name('learner.')
     ->group(function () {
         Route::get('/login', 'LoginController@showLoginForm')->name('login');
@@ -11,7 +10,7 @@ Route::domain(config('app.url'))
         Route::get('/register', 'RegisterController@showRegistrationForm')->name('register');
         Route::post('/register', 'RegisterController@register')->name('register.store');
 
-        Route::post('/password/email', 'ForgotPasswordController@sendResetLinkEmail');
+        Route::post('/password/email', 'ForgotPasswordController@sendResetLinkEmail')->name('password.email');
         Route::post('/password/reset', 'ResetPasswordController@reset');
         Route::get('/password/reset', 'ForgotPasswordController@showLinkRequestForm');
         Route::get('/password/reset/{token}', 'ResetPasswordController@showResetForm');

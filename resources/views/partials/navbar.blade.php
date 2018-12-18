@@ -16,12 +16,18 @@
                 <input type="text" name="term" class="form-control" placeholder="Search for resouces and help">
             </li>
 
-            <li class="nav-item active">
-                <a class="nav-link" href="{{ url('/') }}"> Home </a>
+            <li class="nav-item dropdown">
+                <a id="user-profile" class="nav-link dropdown-toggle" href="#" id="lang" role="button" data-toggle="dropdown">
+                    <img src="{{ icon('earth-globe', 'svg') }}" class="dropdown svg">
+                </a>
+                <div class="dropdown-menu" aria-labelledby="lang">
+                    <a class="dropdown-item"> AR </a>
+                    <a class="dropdown-item"> EN </a>
+                </div>
             </li>
 
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('learner.courses.index') }}"> Courses </a>
+            <li class="nav-item notifications">
+                <a class="nav-link"> <img src="{{ icon('notification', 'svg') }}" class="svg"> </a>
             </li>
 
             @auth
@@ -30,7 +36,7 @@
                 <a id="user-profile" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">
                         <img src="{{ Auth::user()->avatar}}" class="avatar">
                         <span> {{ Auth::user()->name }} </span>
-                        <img src="{{ getImageIcon('down-arrow') }}" class="dropdown">
+                        <img src="{{ icon('down-arrow') }}" class="dropdown">
                     </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="{{ url('/profile') }}"> Profile </a>

@@ -1,11 +1,12 @@
 <?php
 
 
-Route::view('/', 'learner.home')->name('home');
+Route::get('/', 'DashboardController')->name('home');
 
 Route::resource('courses', 'CourseController')->only('index', 'show');
 Route::resource('{course}/units', 'UnitController')->only('index', 'show');
-Route::resource('{unit}/lessons', 'LessonController')->only('index', 'show');
+Route::resource('{unit}/lessons', 'LessonController')->only('index');
+Route::resource('lessons', 'LessonController')->only('show');
 Route::resource('{question}/answers', 'AnswerController')->only('store');
     // Route::resource('quizzes', 'QuizController')->only('store');
 

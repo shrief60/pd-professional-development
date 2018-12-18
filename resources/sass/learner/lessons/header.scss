@@ -1,0 +1,53 @@
+$sidebarBackground: #40434A;
+$sidebarBorderColor: lighten(#5E636F, 20);
+$bodyBackground: #383A3F;
+$gold: #F4B400;
+
+header.header {
+    background: $sidebarBackground;
+    ul {
+        list-style: none;
+        display: flex;
+        padding: 0px;
+
+        li {
+            padding: 0 1rem;
+            margin: 0 10px;
+            border-right: 1px solid #383A3F;
+
+            a {
+                padding: 1rem 0;
+                color: $sidebarBorderColor;
+                display: grid;
+                grid-template-columns: 25px auto;
+                grid-gap: 1rem;
+                align-items: center;
+
+                span {
+                    color: $sidebarBorderColor;
+                    text-transform: uppercase;
+                    font-size: 1rem;
+                }
+
+                svg {
+                    height: 30px;
+                    width: 100%;
+                    fill: $sidebarBorderColor;
+                }
+            }
+
+            &.active {
+                a {
+                    border-bottom: 3px solid $gold;
+                    span {
+                        color: $gold;
+                    }
+                    svg {
+                        fill: $gold;
+                    }
+                }
+            }
+
+        }
+    }
+}
