@@ -22,7 +22,8 @@
     <script src="/js/app.js"></script>
     <script src="/js/ajax.js"></script>
 
-    @if ($errors->any())
+
+    @if (isset($errors) && $errors->any())
     <script> displayErrors(@json($errors->all())) </script>
     @endif
 

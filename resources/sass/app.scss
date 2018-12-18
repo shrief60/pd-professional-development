@@ -10,7 +10,7 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
-// @import '~pretty-checkbox/src/pretty-checkbox.scss';
+@import '~pretty-checkbox/src/pretty-checkbox.scss';
 
 @import '~animate.css/animate.min.css';
 
@@ -55,9 +55,7 @@ h6 {
 }
 
 
-
-
-img.icon {
+img.icon, img.svg {
     width: 32px;
 }
 

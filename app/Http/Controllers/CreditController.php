@@ -7,7 +7,7 @@ use App\Evidence;
 use App\Behavior;
 use App\Progress;
 use App\Track;
-use App\Level;  
+use App\Level;
 use App\Group_Statement;
 
 use Illuminate\Http\Request;
@@ -32,14 +32,14 @@ class CreditController extends Controller
 
 
 
-    /*    store credit and its evidence , decrease number of credit's required 
-    
-    
-    
+    /*    store credit and its evidence , decrease number of credit's required
+
+
+
     */
     public function store(Request $request,$progress_id,$for_id)
     {
-        
+
         $progress=Progress::find($progress_id);
         $track=Track::find($progress->track_id);
         //dd($track);
@@ -48,7 +48,7 @@ class CreditController extends Controller
         $teacher_id= $track->learner_id;
 
        //return $levels[0]->self_weight;
-       
+
         //has to upload at least one attachment
         if(!($request->hasFile('image')) && !($request->hasFile('video')) && !($request->hasFile('pdf'))) {
             return redirect()->back();
@@ -58,13 +58,13 @@ class CreditController extends Controller
         $type = $learner->type;
         //dd($learner);
         $id = $learner->id;
-        
-        // store credit 
+
+        // store credit
         $credit = new Credit;
         $credit->for_id = $for_id;
         $credit->from_id = $id;
         $credit->behavior_id=$behavior_id;
-        
+
         //check type of credit
         if($type =='mentor'){
             $credit->credit_type ='2';
@@ -95,7 +95,7 @@ class CreditController extends Controller
                     Track::find($progress['track_id'])->decrement('rest_points',$quantity);
 
                     }
-            
+
             }
         }
         $credit->save();
@@ -103,7 +103,7 @@ class CreditController extends Controller
 
        //echo $track['rest_points'];
 
-        
+
 //dd($request->all());
         if($request->hasFile('image')) {
 
@@ -142,22 +142,22 @@ class CreditController extends Controller
             }
 
             if($track['rest_points']<=0){
-                //ToDo /* check if this behavior from two weeks*/ 
+                //ToDo /* check if this behavior from two weeks*/
                 Track::UpdateAchived($track['id']);
 
                 $statemens=Group_Statement::getDependedStatements($track->statement_id);
                 //dd($statemens);
                 $tracks=array();
-                foreach($statemens as $value){ 
+                foreach($statemens as $value){
                     $tracks =[
                         'learner_id' => $teacher_id,
                         'statement_id' => $value->id,
                         'opened'=>'1',
                         'achieved'=> '0',
                         'rest_points'=>$value->require_points
-                       ]; 
+                       ];
                        Track::create($tracks);
-                } 
+                }
             }
 
             return redirect()->route('progress.index',[$teacher_id]);
@@ -204,7 +204,7 @@ class CreditController extends Controller
 
          $evidences->sortBy('created_at');
          //return $evidences ;
-        
+
          //$credits=Credit::AboutFrinds($teacher_id);
         //return($user);
         return view('credit.community',['evidences'=>$evidences]);

@@ -17,8 +17,8 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'web',
-        'passwords' => 'users',
+        'guard' => 'learner',
+        'passwords' => 'learners',
     ],
 
     /*
@@ -40,7 +40,6 @@ return [
 
     'guards' => [
 
-
         'admin' => [
             'driver' => 'session',
             'provider' => 'admins',
@@ -51,13 +50,13 @@ return [
             'provider' => 'admins',
         ],
 
-        'learner' => [
-            'driver' => 'session',
+        'learnerAPI' => [
+            'driver' => 'passport',
             'provider' => 'learners',
         ],
 
-        'api:learner' => [
-            'driver' => 'passport',
+        'learner' => [
+            'driver' => 'session',
             'provider' => 'learners',
         ],
 
