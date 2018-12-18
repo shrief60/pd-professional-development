@@ -50,7 +50,7 @@ class CreditController extends Controller
        //return $levels[0]->self_weight;
        
         //has to upload at least one attachment
-        if(!($request->hasFile('image')) && !($request->hasFile('video')) && !($request->hasFile('file'))) {
+        if(!($request->hasFile('image')) && !($request->hasFile('video')) && !($request->hasFile('pdf'))) {
             return redirect()->back();
         }
 
@@ -104,11 +104,12 @@ class CreditController extends Controller
        //echo $track['rest_points'];
 
         
-
+//dd($request->all());
         if($request->hasFile('image')) {
 
             $evidence = new Evidence;
             $evidence->for_id=$for_id;
+            $evidence->name =$request->file('image')->getClientOriginalName();
             $evidence->link= $request->file('image')->store('/evidence/image','public');
             $evidence->type='image';
             $evidence->description=$request->imageDescreption;
@@ -120,6 +121,7 @@ class CreditController extends Controller
 
             $evidence = new Evidence;
             $evidence->for_id=$for_id;
+            $evidence->name =$request->file('video')->getClientOriginalName();
             $evidence->link=$request->file('video')->store('/evidence/video','public');
             $evidence->type='video';
             $evidence->description=$request->videoDescreption;
@@ -131,6 +133,7 @@ class CreditController extends Controller
 
             $evidence = new Evidence;
             $evidence->for_id=$for_id;
+            $evidence->name =$request->file('pdf')->getClientOriginalName();
             $evidence->link=$request->file('pdf')->store('/evidence/pdf','public');
             $evidence->type='pdf';
             $evidence->description=$request->pdfDescreption;
@@ -161,6 +164,51 @@ class CreditController extends Controller
 
     }
 
+    /**
+     * Display a listing of the levels.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function show($teacher_id)
+    {
+        $credits=Credit::allCredits($teacher_id);
+        $progress=Progress::InProgress($teacher_id);
+
+        //$credit=new Credit;
+        //$credits=$credit->learner();
+     //dd($credits);
+        return view('credit.show',['credits'=>$credits,'progress'=>$progress]);
+    }
+
+    /**
+     * Display a listing of the levels.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function friends()
+    {
+
+        $user = auth()->guard('learner')->user()->load('friends.credits.evidences.credit.behavior.group_statement.objective', 'friends.credits.evidences.learner');
+
+        $evidences = collect();
+        foreach($user->friends as $friend)
+        {
+            foreach($friend->credits as $credit)
+            {
+                foreach($credit->evidences as $evidence)
+                {
+                    $evidences->push($evidence);
+                }
+            }
+        }
+
+         $evidences->sortBy('created_at');
+         //return $evidences ;
+        
+         //$credits=Credit::AboutFrinds($teacher_id);
+        //return($user);
+        return view('credit.community',['evidences'=>$evidences]);
+    }
 
 
 
