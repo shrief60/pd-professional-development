@@ -19,7 +19,7 @@ class CreateEvidencesTable extends Migration
             $table->foreign('for_id')->references('id')->on('learners')->onDelete('cascade');
             $table->unsignedInteger("credit_id",false, true);
             $table->foreign('credit_id')->references('id')->on('credits')->onDelete('cascade');
-            
+            $table->string('name', 300);
             $table->string('link', 300);
             $table->string('type', 300);
             $table->text('description')->nullable() ;

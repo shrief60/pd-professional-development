@@ -19,15 +19,29 @@ class Credit extends Model
         return $this->belongsTo('App\Behavior', 'id');
     }
 
+    public function evidences()
+    {
+        return $this->hasMany(Evidence::class);
+    }
+
     public static function  allCredits($teacher_id){
         $progress= DB::table('credits')
-        ->join('evidences', 'evidences.id', '=', 'credits.id')
+        ->join('evidences', 'evidences.credit_id', '=', 'credits.id')
         ->where('credits.for_id', $teacher_id)
-        ->select('evidences.*','credits.*')
-        ->get();
+        ->select('evidences.*','credits.* ')
+        ->get()
+        ->groupBy('type');
         return $progress;
 
     }
-
+    public static function AboutFrinds($teacher_id){
+    $friend = Learner::find($teacher_id)->friends;
+    dd($friend);
+    $credit= DB::table('credits')
+    ->whereIn('from_id',$friend )
+    ->select('credits.*')
+    ->get();
+    return $credit;
+    }
 
 }

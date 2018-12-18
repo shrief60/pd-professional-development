@@ -48,4 +48,14 @@ class Learner extends Authenticatable implements LikerContract
 
         return $this->where($column, $value)->first();
     }
+
+    public function friends(){
+        return $this->belongsToMany(Learner::class, 'friends', 'learner_id', 'friend_id');
+    }
+
+
+    public function credits()
+    {
+        return $this->hasMany(Credit::class, 'from_id');
+    }
 }

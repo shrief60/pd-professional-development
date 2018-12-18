@@ -9,8 +9,8 @@ class Behavior extends Model
 {
     protected $fillable = ['first_lang_behavior', 'second_lang_behavior','statement_id','max_self','max_peer','max_mentor'];
     
-    public function GroupStatment(){
-        return $this->belongsTo('App\Group_Statment', 'id');
+    public function group_statement(){
+        return $this->belongsTo('App\Group_Statement', 'id');
     }
 
 
