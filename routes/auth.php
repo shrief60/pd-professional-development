@@ -1,7 +1,6 @@
 <?php
 
-Route::domain(config('app.url'))
-    ->namespace('Learner')
+Route::namespace ('Learner')
     ->name('learner.')
     ->group(function () {
         Route::get('/login', 'LoginController@showLoginForm')->name('login');
