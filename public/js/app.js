@@ -13731,7 +13731,8 @@ module.exports = Cancel;
 __webpack_require__(11);
 __webpack_require__(36);
 __webpack_require__(37);
-module.exports = __webpack_require__(38);
+__webpack_require__(38);
+module.exports = __webpack_require__(39);
 
 
 /***/ }),
@@ -36033,6 +36034,12 @@ module.exports = function spread(callback) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 39 */
+/***/ (function(module, exports) {
+
+throw new Error("Module build failed: ModuleBuildError: Module build failed: Error: ENOENT: no such file or directory, open 'C:\\laragon\\www\\discovery\\resources\\sass\\learner\\home.scss'\n    at runLoaders (C:\\laragon\\www\\discovery\\node_modules\\webpack\\lib\\NormalModule.js:195:19)\n    at C:\\laragon\\www\\discovery\\node_modules\\loader-runner\\lib\\LoaderRunner.js:364:11\n    at C:\\laragon\\www\\discovery\\node_modules\\loader-runner\\lib\\LoaderRunner.js:200:19\n    at C:\\laragon\\www\\discovery\\node_modules\\enhanced-resolve\\lib\\CachedInputFileSystem.js:70:14\n    at _combinedTickCallback (internal/process/next_tick.js:131:7)\n    at process._tickCallback (internal/process/next_tick.js:180:9)");
 
 /***/ })
 /******/ ]);

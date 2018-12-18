@@ -227,8 +227,8 @@
 }
 
 .plyr__control.plyr__tab-focus {
-  -webkit-box-shadow: 0 0 0 5px rgba(26, 175, 255, 0.5);
-          box-shadow: 0 0 0 5px rgba(26, 175, 255, 0.5);
+  -webkit-box-shadow: 0 0 0 5px rgba(244, 180, 0, 0.5);
+          box-shadow: 0 0 0 5px rgba(244, 180, 0, 0.5);
   outline: 0;
 }
 
@@ -251,7 +251,7 @@ a.plyr__control::before {
 .plyr--audio .plyr__control.plyr__tab-focus,
 .plyr--audio .plyr__control:hover,
 .plyr--audio .plyr__control[aria-expanded='true'] {
-  background: #1aafff;
+  background: #F4B400;
   color: #fff;
 }
 
@@ -263,12 +263,12 @@ a.plyr__control::before {
 .plyr--video .plyr__control.plyr__tab-focus,
 .plyr--video .plyr__control:hover,
 .plyr--video .plyr__control[aria-expanded='true'] {
-  background: #1aafff;
+  background: #F4B400;
   color: #fff;
 }
 
 .plyr__control--overlaid {
-  background: rgba(26, 175, 255, 0.8);
+  background: rgba(244, 180, 0, 0.8);
   border: 0;
   border-radius: 100%;
   -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
@@ -291,7 +291,7 @@ a.plyr__control::before {
 
 .plyr__control--overlaid:hover,
 .plyr__control--overlaid:focus {
-  background: #1aafff;
+  background: #F4B400;
 }
 
 .plyr--playing .plyr__control--overlaid {
@@ -627,7 +627,7 @@ a.plyr__control::before {
 }
 
 .plyr__menu__container .plyr__control[role='menuitemradio'][aria-checked='true']::before {
-  background: #1aafff;
+  background: #F4B400;
 }
 
 .plyr__menu__container .plyr__control[role='menuitemradio'][aria-checked='true']::after {
@@ -661,7 +661,7 @@ a.plyr__control::before {
   background: transparent;
   border: 0;
   border-radius: 28px;
-  color: #1aafff;
+  color: #F4B400;
   display: block;
   height: 20px;
   margin: 0;
@@ -802,18 +802,18 @@ a.plyr__control::before {
 }
 
 .plyr--full-ui input[type='range'].plyr__tab-focus::-webkit-slider-runnable-track {
-  -webkit-box-shadow: 0 0 0 5px rgba(26, 175, 255, 0.5);
-          box-shadow: 0 0 0 5px rgba(26, 175, 255, 0.5);
+  -webkit-box-shadow: 0 0 0 5px rgba(244, 180, 0, 0.5);
+          box-shadow: 0 0 0 5px rgba(244, 180, 0, 0.5);
   outline: 0;
 }
 
 .plyr--full-ui input[type='range'].plyr__tab-focus::-moz-range-track {
-  box-shadow: 0 0 0 5px rgba(26, 175, 255, 0.5);
+  box-shadow: 0 0 0 5px rgba(244, 180, 0, 0.5);
   outline: 0;
 }
 
 .plyr--full-ui input[type='range'].plyr__tab-focus::-ms-track {
-  box-shadow: 0 0 0 5px rgba(26, 175, 255, 0.5);
+  box-shadow: 0 0 0 5px rgba(244, 180, 0, 0.5);
   outline: 0;
 }
 

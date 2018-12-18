@@ -2,5 +2,6 @@
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
     "/css/auth/auth.css": "/css/auth/auth.css",
-    "/css/learner/lessons/show.css": "/css/learner/lessons/show.css"
+    "/css/learner/lessons/show.css": "/css/learner/lessons/show.css",
+    "/css/learner/home.css": "/css/learner/home.css"
 }
