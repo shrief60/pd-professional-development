@@ -30,7 +30,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    public $redirectTo = '/profile';
+    public $redirectTo = '/';
 
     /**
      * Create a new controller instance.
