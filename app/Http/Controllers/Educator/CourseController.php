@@ -18,10 +18,10 @@ class CourseController extends Controller
         $courses = Course::withCount(['units', 'lessons'])->get();
 
         if(request()->ajax()) {
-            return api(compact('courses'));
+            return new CourseCollection($courses);
         }
 
-        return view('educator.courses.index', compact('courses'));
+        return view('educator.course.index', compact('courses'));
     }
 
     public function show(Course $course)
@@ -30,10 +30,11 @@ class CourseController extends Controller
         $course->load('units.lessons');
 
         if (request()->ajax()) {
-            return api(compact('course'));
+
+            return new CourseResource($course);
         }
 
-        return view('educator.courses.show', compact('course'));
+        return view('educator.course.show', compact('course'));
 
     }
 
@@ -55,14 +56,16 @@ class CourseController extends Controller
         $course->load('units.lessons');
 
         if (request()->ajax()) {
-            return compact('course');
+
+            return new CourseResource($course);
         }
 
-        return view('educator.courses.show', compact('course'));
+        return view('educator.course.show', compact('course'));
     }
 
     public function update(CourseUpdateRequest $request, Course $course)
     {
+
 
         if ($request->hasFile('image')) {
             $course->image = $request->file('image')->store('courses', 'public');
@@ -77,18 +80,18 @@ class CourseController extends Controller
         $course->load('units.lessons');
 
         if (request()->ajax()) {
-            return api(compact('course'));
+            return new CourseResource($course);
         }
 
-        return view('educator.courses.show', compact('course'));
+        return view('educator.course.show', compact('course'));
     }
 
     public function destroy(Course $course) {
 
-        $course->delete();
+        $destroyed = $course->destroy();
 
         if (request()->ajax()) {
-            return api([], 402);
+            return $destroyed ? response()->json() : response()->json([], 500);
         }
 
         return redirect()->name('educator.courses.index');

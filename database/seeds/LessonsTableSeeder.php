@@ -12,14 +12,6 @@ class LessonsTableSeeder extends Seeder
      */
     public function run()
     {
-        App\Unit::all()->each(function($unit) {
-
-            for($order = 1; $order <= 10 ; $order++) {
-                factory(Lesson::class)->create([
-                    'unit_id' => $unit->id,
-                    'order' => $order
-                ]);
-            }
-        });
+        factory(Lesson::class, 40)->create();
     }
 }

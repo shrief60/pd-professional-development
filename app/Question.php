@@ -9,9 +9,9 @@ class Question extends Model
 
     protected $guarded = [];
 
-    public function questionable()
+    public function lesson()
     {
-        return $this->morphTo();
+        return $this->belongsTo(Lesson::class);
     }
 
     public function answers()
@@ -19,9 +19,9 @@ class Question extends Model
         return $this->hasMany(Answer::class);
     }
 
-    public function learners()
+    public function students()
     {
-        return $this->belongsToMany(Learner::class);
+        return $this->belongsToMany(Student::class);
     }
 
 }

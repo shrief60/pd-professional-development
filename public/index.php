@@ -58,14 +58,3 @@ $response = $kernel->handle(
 $response->send();
 
 $kernel->terminate($request, $response);
-
-
-
-/*
-|--------------------------------------------------------------------------
-| Change Public Path
-|--------------------------------------------------------------------------
- */
-$app->bind('path.public', function () {
-    return __DIR__;
-});

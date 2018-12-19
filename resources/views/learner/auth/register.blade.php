@@ -2,48 +2,69 @@
 
 @section('form')
 
-<form action="{{ url('register') }}" method="POST">
+<form action="@yield('form-action')" method="POST">
 
     @csrf
 
-    <div class="form-group">
+    <h3>
+        <a href="{{ url('/') }}">
+            Welcome to {{ config('app.name') }}
+        </a>
+    </h3>
+
+    <div class="input-group">
         <input type="text" class="form-control" name="name" placeholder="Name" value="{{ old('name') }}" />
+        <span class="input-group-addon">
+            <img src="{{ getImageIcon('user') }}" alt="" class="icon">
+        </span>
     </div>
 
-    <div class="form-group">
+    <div class="input-group">
         <input type="text" class="form-control" name="username" placeholder="Username" value="{{ old('username') }}" />
+        <span class="input-group-addon">
+            <img src="{{ getImageIcon('username') }}" alt="" class="icon">
+        </span>
     </div>
 
-    <div class="form-group">
+    <div class="input-group">
         <input type="text" class="form-control" name="email" placeholder="Email" value="{{ old('email') }}" />
+        <span class="input-group-addon">
+            <img src="{{ getImageIcon('email') }}" alt="" class="icon">
+        </span>
     </div>
 
     <div class="grid">
-
-        <div class="form-group">
-            <input type="password" class="form-control" name="password" placeholder="Password" />
+        <div class="input-group">
+            <input type="password" class="form-control" name="password" placeholder="Password" value="{{ old('password') }}" />
+            <span class="input-group-addon">
+                <img src="{{ getImageIcon('key') }}" alt="" class="icon">
+            </span>
         </div>
 
-        <div class="form-group">
-            <input type="password" placeholder="Confirm Password" name="password_confirmation" class="form-control"  />
+        <div class="input-group">
+            <input type="password" placeholder="Confirm Password" name="password_confirmation" class="form-control" value="{{ old('password_confirmation') }}" />
+            <span class="input-group-addon">
+                <img src="{{ getImageIcon('lock') }}" alt="" class="icon">
+            </span>
         </div>
 
     </div>
 
-    <input type="hidden" name="type" value="teacher">
-
-    {{-- <select name="type" class="custom-select">
-        <option selected disabled> Learner Type </option>
-        <option value="student"> Student </option>
-        <option value="teacher"> Teacher </option>
-        <option value="mentor"> Mentor </option>
-    </select> --}}
-
-    <button type="submit" class="btn ">
-        <img src="{{ getImageIcon('login', 'svg') }}" />
-        <span>REGISTER</span>
-    </button>
+    <select class="custom-select">
+      <option selected disabled> Learner Type </option>
+      <option value="student"> Student </option>
+      <option value="teacher"> Teacher </option>
+      <option value="mentor"> Mentor </option>
+    </select>
+    <button type="submit" class="btn ">SIGN UP</button>
 </form>
 
+<div class="or">
+    <hr class="bar">
+    <span>OR</span>
+    <hr class="bar">
+</div>
+
+<a class="btn auth-switcher" href="{{ route('learner.login') }}"> Have an Account? </a>
 
 @stop

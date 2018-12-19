@@ -3,14 +3,11 @@
 namespace App\Http\Controllers\Auth\Learner;
 
 use App\Learner;
-use App\Group_Statement;
-use App\Track;
-
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Request;
+
 class RegisterController extends Controller
 {
     /*
@@ -31,7 +28,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/profile';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -51,13 +48,11 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-
         return Validator::make($data, [
             'name' => 'required|max:255',
             'username' => 'required|max:255|unique:learners',
             'email' => 'required|email|max:255|unique:learners',
             'password' => 'required|min:6|confirmed',
-            'type' => 'required'
         ]);
     }
 
@@ -71,17 +66,13 @@ class RegisterController extends Controller
     {
         $data = (object) $data;
 
-        $learner = Learner::create([
+        return Learner::create([
             'name' => $data->name,
             'username' => $data->username,
             'email' => $data->email,
             'password' => bcrypt($data->password),
-            'type' => $data->type
+            'type' => 'student'
         ]);
-
-        $learner->profile()->create();
-
-        return $learner;
     }
 
     /**
@@ -103,30 +94,4 @@ class RegisterController extends Controller
     {
         return Auth::guard('learner');
     }
-
-
-    protected function registered(Request $request , $user)
-    {
-
-        if($user->type != 'teacher') return;
-
-        $teacher_id=$user->id;
-        $statemens=Group_Statement::getStatements();
-        //dd($statemens);
-        $track=array();
-        foreach($statemens as $value){
-            $track =[
-                'learner_id' => $teacher_id,
-                'statement_id' => $value->id,
-                'opened'=>'1',
-                'achieved'=> '0',
-                'rest_points'=>$value->require_points
-               ];
-               Track::create($track);
-        }
-        return redirect()->route('tracks.index',[$teacher_id]);
-
-    }
-
-
 }
