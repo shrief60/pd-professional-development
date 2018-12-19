@@ -36,9 +36,9 @@ class Lesson extends Model
         return $this->morphMany(Question::class, 'questionable');
     }
 
-    public function students()
+    public function learners()
     {
-        return $this->belongsToMany(Student::class);
+        return $this->belongsToMany(Learner::class);
     }
 
     /*************************************************************************/
@@ -52,24 +52,6 @@ class Lesson extends Model
     {
         return asset("/storage/{$poster}");
     }
-
-    /*************************************************************************/
-    /*                          Route Model Binding                          */
-    /*************************************************************************/
-    public function getRouteKeyName()
-    {
-        return 'slug';
-    }
-
-    public function sluggable()
-    {
-        return [
-            'slug' => [
-                'source' => 'title',
-            ],
-        ];
-    }
-
     public function getIsVideoAttribute()
     {
         return $this->type === 'video';
@@ -84,4 +66,25 @@ class Lesson extends Model
     {
         return $this->type === 'practice';
     }
+
+    /*************************************************************************/
+    /*                          Route Model Binding                          */
+    /*************************************************************************/
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
+    /*************************************************************************/
+    /*                          Slug                                         */
+    /*************************************************************************/
+    public function sluggable()
+    {
+        return [
+            'slug' => [
+                'source' => 'title',
+            ],
+        ];
+    }
+
 }

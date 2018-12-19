@@ -7,13 +7,20 @@ use Illuminate\Database\Eloquent\Model;
 class Evidence extends Model
 {
     protected $table = 'evidences';
-    protected $fillable = [ 'for_id','name','link','type','description','credit_id'];
-    
-    public function credit(){
-        return $this->belongsTo('App\Credit', 'id');
+    protected $fillable = ['for_id', 'name', 'link', 'type', 'description', 'credit_id'];
+
+    public function credit()
+    {
+        return $this->belongsTo(Credit::class, 'id');
     }
 
-    public function learner() {
+    public function learner()
+    {
         return $this->belongsTo(Learner::class, 'for_id');
+    }
+
+    public function comments()
+    {
+        return $this->morphMany(Comment::class, 'commentable');
     }
 }

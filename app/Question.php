@@ -8,7 +8,11 @@ class Question extends Model
 {
 
     protected $guarded = [];
+    protected $hidden = ['correct_answer_id'];
 
+    /*************************************************************************/
+    /*                          Relations                                    */
+    /*************************************************************************/
     public function questionable()
     {
         return $this->morphTo();
@@ -22,6 +26,22 @@ class Question extends Model
     public function learners()
     {
         return $this->belongsToMany(Learner::class);
+    }
+
+    /*************************************************************************/
+    /*                             Accessors                                 */
+    /*************************************************************************/
+    public function getIsMCQAttribute()
+    {
+        return $this->type === 'mcq';
+    }
+
+    /*************************************************************************/
+    /*                             Methods                                   */
+    /*************************************************************************/
+    public function learnerCanAnswer()
+    {
+        return !$this->learners()->wherePivot('learner_id', auth()->id())->exists();
     }
 
 }

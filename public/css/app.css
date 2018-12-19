@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Nunito);@import url(https://fonts.googleapis.com/css?family=Ubuntu+Condensed|Open+Sans);@import url(https://fonts.googleapis.com/css?family=Mali|Montserrat+Alternates|PT+Sans+Narrow|Rambla|Titillium+Web|Changa);@charset "UTF-8";
+@import url(https://fonts.googleapis.com/css?family=Nunito);@import url(https://fonts.googleapis.com/css?family=Ubuntu+Condensed|Open+Sans);@import url(https://fonts.googleapis.com/css?family=Mali|Montserrat+Alternates|PT+Sans+Narrow|Rambla|Titillium+Web|Changa);@import url(https://fonts.googleapis.com/css?family=News+Cycle|Source+Sans+Pro:400i);@charset "UTF-8";
 
 /*!
  * animate.css -http://daneden.me/animate
@@ -23678,21 +23678,27 @@ readers do not read off random characters that represent icons */
 }
 
 *:not(i) {
-  font-family: 'Rambla', sans-serif !important;
+  font-family: 'Titillium Web', sans-serif !important;
+  letter-spacing: 1.2px;
 }
 
-h1,
+/* h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-  font-family: 'Titillium Web', sans-serif !important;
-}
+    font-family: 'News Cycle',
+        sans-serif !important;
+} */
 
 img.icon,
 img.svg {
   width: 32px;
+}
+
+img.svg {
+  display: none;
 }
 
 .box {

@@ -2,8 +2,8 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
+use Illuminate\Database\Eloquent\Model;
 
 class Course extends Model
 {
@@ -12,6 +12,9 @@ class Course extends Model
 
     protected $guarded = [];
 
+    /*************************************************************************/
+    /*                          Relations                                    */
+    /*************************************************************************/
     public function units()
     {
         return $this->hasMany(Unit::class);
@@ -27,7 +30,6 @@ class Course extends Model
         return $this->belongsToMany(User::class);
     }
 
-
     /*************************************************************************/
     /*                          Route Model Binding                          */
     /*************************************************************************/
@@ -36,6 +38,9 @@ class Course extends Model
         return 'slug';
     }
 
+    /*************************************************************************/
+    /*                               Slug                                    */
+    /*************************************************************************/
     public function sluggable()
     {
         return [
@@ -45,9 +50,24 @@ class Course extends Model
         ];
     }
 
-
-    public function getImageAttribute($image) {
+    /*************************************************************************/
+    /*                              Accessors                                */
+    /*************************************************************************/
+    public function getImageAttribute($image)
+    {
         return asset("storage/$image");
     }
 
+    public function progress()
+    {
+        return round($this->finishedUnits() / $this->units()->count() * 100);
+    }
+
+    /*************************************************************************/
+    /*                         Methods                                       */
+    /*************************************************************************/
+    public function finishedUnits()
+    {
+        return LearnerUnit::finishedUnits($this->units()->select('id')->get());
+    }
 }

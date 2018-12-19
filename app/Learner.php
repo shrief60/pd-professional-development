@@ -3,13 +3,13 @@
 namespace App;
 
 use App\Notifications\LearnerResetPassword;
+use Carbon\Carbon;
 use Cog\Contracts\Love\Liker\Models\Liker as LikerContract;
 use Cog\Laravel\Love\Liker\Models\Traits\Liker;
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use SMartins\PassportMultiauth\HasMultiAuthApiTokens;
-use Cviebrock\EloquentSluggable\Sluggable;
-use Carbon\Carbon;
 
 class Learner extends Authenticatable implements LikerContract
 {
@@ -51,6 +51,9 @@ class Learner extends Authenticatable implements LikerContract
         return $this->where($column, $value)->first();
     }
 
+    /*************************************************************************/
+    /*                               Relations                               */
+    /*************************************************************************/
     public function accounts()
     {
         return $this->morphMany(LinkedSocialAccount::class, 'accountable');
@@ -58,7 +61,7 @@ class Learner extends Authenticatable implements LikerContract
 
     public function profile()
     {
-        switch($this->type) {
+        switch ($this->type) {
             case 'student':
                 return $this->hasOne(StudentProfile::class);
             case 'teacher':
@@ -68,11 +71,32 @@ class Learner extends Authenticatable implements LikerContract
         }
     }
 
+    public function friends()
+    {
+        return $this->belongsToMany(Learner::class, 'friends', 'learner_id', 'friend_id');
+    }
+
+    public function credits()
+    {
+        return $this->hasMany(Credit::class, 'from_id');
+    }
+
+    public function questions()
+    {
+        return $this->belongsToMany(Question::class);
+    }
+
+    /*************************************************************************/
+    /*                          Route Model Binding                          */
+    /*************************************************************************/
     public function getRouteKeyName()
     {
         return 'username';
     }
 
+    /*************************************************************************/
+    /*                          Slug                                         */
+    /*************************************************************************/
     public function sluggable()
     {
         return [
@@ -82,31 +106,14 @@ class Learner extends Authenticatable implements LikerContract
         ];
     }
 
+    /*************************************************************************/
+    /*                              Accessors                                */
+    /*************************************************************************/
     public function getAvatarAttribute($avatar)
     {
         return $avatar ? asset("storage/$avatar") : null;
     }
 
-    public function canAdd(Learner $learner) {
-
-        return true;
-
-        if($this->id === $learner->id) return false;
-
-        if($this->isFriend($learner)) return false;
-
-        return true;
-    }
-
-    public function isFriend(Learner $learner)
-    {
-        return false;
-    }
-
-    public function questions()
-    {
-        return $this->belongsToMany(Question::class);
-    }
 
     public function getBirthdayAttribute()
     {
@@ -123,13 +130,27 @@ class Learner extends Authenticatable implements LikerContract
         return $name[0];
     }
 
-    public function friends(){
-        return $this->belongsToMany(Learner::class, 'friends', 'learner_id', 'friend_id');
+    /*************************************************************************/
+    /*                         Methods                                       */
+    /*************************************************************************/
+    public function canAdd(Learner $learner)
+    {
+
+        return true;
+
+        if ($this->id === $learner->id) {
+            return false;
+        }
+
+        if ($this->isFriend($learner)) {
+            return false;
+        }
+
+        return true;
     }
 
-
-    public function credits()
+    public function isFriend(Learner $learner)
     {
-        return $this->hasMany(Credit::class, 'from_id');
+        return false;
     }
 }

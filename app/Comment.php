@@ -6,16 +6,22 @@ use Illuminate\Database\Eloquent\Model;
 
 class Comment extends Model
 {
-    
+
+    protected $guarded = [];
     // (Post or Lesson)
-    public function commentable() 
+    public function commentable()
     {
         return $this->morphTo();
     }
 
     // (Student, Mentor, or Educator)
-    public function owner() 
+    public function learner()
     {
-        return $this->morphTo();
+        return $this->belongsTo(Learner::class);
+    }
+
+    public function replies()
+    {
+        return $this->hasMany(Reply::class);
     }
 }
