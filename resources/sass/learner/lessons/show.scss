@@ -308,6 +308,20 @@ main.main {
                 }
             }
 
+            .practice {
+                width: 95%;
+                margin: auto;
+                .question {
+                    background: $sidebarBackground;
+                    margin-bottom: 0.5rem;
+                    padding: 2rem 1rem;
+                    .answer {
+                        display: block;
+                        margin: 1rem;
+                    }
+                }
+            }
+
             .details {
                 width: 98%;
                 margin: 1rem auto;

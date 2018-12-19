@@ -100,14 +100,15 @@
                 <embed src="{{ $lesson->path }}" />
             </div>
             @elseif($lesson->isPractice)
+            <div class="practice">
                 <form method="POST">
                     @csrf
 
                     <div class="grid">
 
-                        <div id="questions">
-                            @foreach ($video->questions as $question)
-                            <div class="question">
+                        <div>
+                            @foreach ($lesson->questions as $question)
+                            <div class="question shadow">
                                 <p> {{ $question->body }} </p>
                                 @if($question->isMCQ)
                                 <div class="answers">
@@ -129,6 +130,7 @@
 
                     </div>
                 </form>
+            </div>
             @endif
             <div class="details shadow">
                 <h2 class="lesson-title"> {{ $lesson->title }}</h2>

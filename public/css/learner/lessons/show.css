@@ -2442,6 +2442,22 @@ main.main .content .lesson .reading embed {
   overflow-y: hidden;
 }
 
+main.main .content .lesson .practice {
+  width: 95%;
+  margin: auto;
+}
+
+main.main .content .lesson .practice .question {
+  background: #40434A;
+  margin-bottom: 0.5rem;
+  padding: 2rem 1rem;
+}
+
+main.main .content .lesson .practice .question .answer {
+  display: block;
+  margin: 1rem;
+}
+
 main.main .content .lesson .details {
   width: 98%;
   margin: 1rem auto;
