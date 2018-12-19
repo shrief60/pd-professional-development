@@ -4,12 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
-use Znck\Eloquent\Traits\BelongsToThrough;
 
 class Lesson extends Model
 {
 
-    use Sluggable, BelongsToThrough;
+    use Sluggable;
 
     protected $guarded = [];
 
@@ -21,11 +20,6 @@ class Lesson extends Model
         return $this->belongsTo(Unit::class);
     }
 
-    public function course()
-    {
-        return $this->belongsToThrough(Course::class, Unit::class);
-    }
-
     public function comments()
     {
         return $this->morphMany(Comment::class, 'commentable');
@@ -33,7 +27,7 @@ class Lesson extends Model
 
     public function questions()
     {
-        return $this->morphMany(Question::class, 'questionable');
+        return $this->hasMany(Question::class);
     }
 
     public function students()
@@ -47,10 +41,6 @@ class Lesson extends Model
     public function getPathAttribute($path)
     {
         return asset("/storage/{$path}");
-    }
-    public function getPosterAttribute($poster)
-    {
-        return asset("/storage/{$poster}");
     }
 
     /*************************************************************************/
@@ -68,20 +58,5 @@ class Lesson extends Model
                 'source' => 'title',
             ],
         ];
-    }
-
-    public function getIsVideoAttribute()
-    {
-        return $this->type === 'video';
-    }
-
-    public function getIsReadingAttribute()
-    {
-        return $this->type === 'reading';
-    }
-
-    public function getIsPracticeAttribute()
-    {
-        return $this->type === 'practice';
     }
 }

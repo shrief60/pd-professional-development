@@ -15,14 +15,11 @@ class CreateEvidencesTable extends Migration
     {
         Schema::create('evidences', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger("for_id",false, true);
-            $table->foreign('for_id')->references('id')->on('learners')->onDelete('cascade');
-            $table->unsignedInteger("credit_id",false, true);
-            $table->foreign('credit_id')->references('id')->on('credits')->onDelete('cascade');
-            $table->string('name', 300);
+            $table->integer('for_id')->references('id')->on('learners')->onDelete('cascade');
             $table->string('link', 300);
             $table->string('type', 300);
-            $table->text('description')->nullable() ;
+            $table->text('description');
+
             $table->timestamps();
         });
     }

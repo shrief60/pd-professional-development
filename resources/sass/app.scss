@@ -1,8 +1,6 @@
 
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Nunito');
-@import url('https://fonts.googleapis.com/css?family=Ubuntu+Condensed|Open+Sans');
-@import url('https://fonts.googleapis.com/css?family=Mali|Montserrat+Alternates|PT+Sans+Narrow|Rambla|Titillium+Web|Changa');
 
 // Variables
 @import 'variables';
@@ -10,24 +8,10 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
-@import '~pretty-checkbox/src/pretty-checkbox.scss';
+@import '~normalize.css/normalize.css';
 
-@import '~animate.css/animate.min.css';
+@import '~bootstrap-vue/dist/bootstrap-vue.css';
 
-@import '~typicons.font/src/font/typicons.css';
-
-@import '~@fortawesome/fontawesome-free/scss/fontawesome';
-
-@import '~@fortawesome/fontawesome-free/scss/solid';
-
-@import '~@fortawesome/fontawesome-free/scss/regular';
-
-@import '~@fortawesome/fontawesome-free/scss/brands';
-
-@import '~hover.css/scss/hover';
-
-@import 'navbar';
-@import 'profile';
 
 .form-control, .btn, .custom-select {
     border-radius: 0px;
@@ -39,43 +23,4 @@
 
 .btn {
     min-width: 100px
-}
-
-*:not(i) {
-    font-family: 'Rambla', sans-serif !important;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    font-family: 'Titillium Web', sans-serif !important;
-}
-
-
-img.icon, img.svg {
-    width: 32px;
-}
-
-
-.box {
-    width: 95%;
-    margin: 20px auto;
-    background-color: #fff;
-    border-radius: 4px;
-    box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.2),
-    0px 0px 1px 0px rgba(0, 0, 0, 0.2);
-    padding: 1rem;
-    position: relative;
-    .btn {
-        background: transparent;
-        border: 1px solid $green;
-        color: $green;
-
-        &:hover {
-            color: #fff;
-        }
-    }
 }

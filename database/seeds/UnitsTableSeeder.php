@@ -12,9 +12,6 @@ class UnitsTableSeeder extends Seeder
      */
     public function run()
     {
-
-        App\Course::all()->each(function($course) {
-            $course->units()->saveMany(factory(Unit::class, 8)->make());
-        });
+        factory(Unit::class, 8)->create();
     }
 }

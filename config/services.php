@@ -40,22 +40,4 @@ return [
         ],
     ],
 
-    'facebook' => [
-        'client_id' => env('FACEBOOK_CLIENT_ID'),         // Your Facebook Client ID
-        'client_secret' => env('FACEBOOK_CLIENT_SECRET'), // Your Facebook Client Secret
-        'redirect' => 'https://discovery.com/login/facebook/callback',
-    ],
-
-    'twitter' => [
-        'client_id' => env('TWITTER_CLIENT_ID'),         // Your Twitter Client ID
-        'client_secret' => env('TWITTER_CLIENT_SECRET'), // Your Twitter Client Secret
-        'redirect' => 'http://discovery.test/login/facebook/callback',
-    ],
-
-    'google' => [
-        'client_id' => env('GOOGLE_CLIENT_ID'),         // Your Google Client ID
-        'client_secret' => env('GOOGLE_CLIENT_SECRET'), // Your Google Client Secret
-        'redirect' => 'http://discovery.com/login/google/callback',
-    ],
-
 ];

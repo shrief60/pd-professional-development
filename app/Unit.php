@@ -8,23 +8,14 @@ use Cviebrock\EloquentSluggable\Sluggable;
 class Unit extends Model
 {
 
+
     use Sluggable;
 
     protected $guarded = [];
 
     public function lessons()
     {
-        return $this->hasMany(Lesson::class)->oldest('order');
-    }
-
-    public function lessonsReverse()
-    {
-        return $this->hasMany(Lesson::class)->latest('order');
-    }
-
-    public function questions()
-    {
-        return $this->morphMany(Question::class, 'questionable');
+        return $this->hasMany(Lesson::class);
     }
 
     public function course()
@@ -52,13 +43,6 @@ class Unit extends Model
             ]
         ];
 
-    }
-
-    public function lessonsOrder()
-    {
-        $lastLesson = $this->lessonsReverse()->select('order')->latest('order')->first();
-
-        return $lastLesson ? $lastLesson->order++ : 1;
     }
 
 

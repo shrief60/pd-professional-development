@@ -13,20 +13,12 @@ class CourseController extends Controller
     {
         $courses = Course::withCount(['units', 'lessons'])->get();
 
-        if(request()->ajax()) {
-            return api(compact('courses'));
-        }
-
         return view('learner.courses.index', compact('courses'));
     }
 
     public function show(Course $course)
     {
         $course->load('units.lessons');
-
-        if (request()->ajax()) {
-            return api(compact('course'));
-        }
 
         return view('learner.courses.show', compact('course'));
     }

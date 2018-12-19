@@ -48,10 +48,9 @@ Route::prefix('admin')
         Route::post('login', 'Auth\AdminController@login');
         Route::post('register', 'Auth\AdminController@register');
     });
-
-Route::group(['middleware' => 'multiauth:learnerAPI'], function () {
-    Route::get('/learner/user', function() {
-        return Auth::user();
-    });
+/*
+Route::group(['middleware' => ['api:learner']], function () {
+    Route::post('/learner/login', 'Auth\LearnerController@login');
+    Route::post('/learner/register', 'Auth\LearnerController@register');
 });
-
+ */

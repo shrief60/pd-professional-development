@@ -43,5 +43,5 @@
     <hr class="bar">
 </div>
 
-<a class="btn auth-switcher" href="{{ url('register') }}"> Create an Account </a>
+<a class="btn auth-switcher" href="{{ route('learner.register') }}"> Create an Account.   </a>
 @stop

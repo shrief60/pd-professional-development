@@ -19,10 +19,6 @@ class CreateTracksTable extends Migration
             $table->foreign('learner_id')->references('id')->on('learners')->onDelete('cascade');
             $table->unsignedInteger('statement_id');
             $table->foreign('statement_id')->references('id')->on('group_statements')->onDelete('cascade');
-            $table->boolean('opened')->default(true);
-            $table->boolean('achieved')->default(false);
-            $table->boolean('worked')->default(false);
-            $table->double('rest_points');
             $table->timestamps();
         });
     }
