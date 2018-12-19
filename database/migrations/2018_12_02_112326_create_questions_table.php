@@ -17,10 +17,9 @@ class CreateQuestionsTable extends Migration
             $table->increments('id');
             $table->integer('lesson_id')->unsigned();
             $table->text('body');
-            $table->enum('type', ['mcq', 'ai', 'text'])->default('mcq');
-            $table->integer('grade')->unsigned();
-            $table->integer('lesson_time')->nullable();
-            $table->integer('lesson_backward_time')->nullable();
+            $table->string('type');
+            $table->integer('grade');
+            $table->string('lesson_time');
             $table->integer('correct_answer_id')->nullable()->unsigned();
             $table->timestamps();
         });

@@ -11,7 +11,7 @@
             <ul>
             @foreach ($unit->lessons as $lesson)
                 <li>
-                    <a href="{{ route('learner.lessons.show', compact('unit', 'lesson')) }}">{{ $lesson->title }}</a>
+                    <a href="{{ route('learner.lessons.show', $lesson)) }}">{{ $lesson->title }}</a>
                 </li>
             @endforeach
             </ul>

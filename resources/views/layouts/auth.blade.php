@@ -23,7 +23,6 @@
 
 <body class="">
 
-
     <div class="content">
         <div class="wrapper">
             @yield('form')
@@ -32,11 +31,8 @@
 
     <div class="image"></div>
 
-    <script src="/js/app.js"></script>
-    <script src="/js/ajax.js"></script>
-    <script>
-        displayErrors(@json($errors->messages()))
-    </script>
+    <link rel="stylesheet" href="{{ asset('css/app.js') }}">
+
     @stack('scripts')
 
 </body>

@@ -28,7 +28,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/profile';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -53,7 +53,6 @@ class RegisterController extends Controller
             'username' => 'required|max:255|unique:learners',
             'email' => 'required|email|max:255|unique:learners',
             'password' => 'required|min:6|confirmed',
-            'type' => 'required'
         ]);
     }
 
@@ -67,17 +66,13 @@ class RegisterController extends Controller
     {
         $data = (object) $data;
 
-        $learner = Learner::create([
+        return Learner::create([
             'name' => $data->name,
             'username' => $data->username,
             'email' => $data->email,
             'password' => bcrypt($data->password),
-            'type' => $data->type
+            'type' => 'student'
         ]);
-
-        $learner->profile()->create();
-
-        return $learner;
     }
 
     /**

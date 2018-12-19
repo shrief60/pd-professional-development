@@ -1,97 +1,148 @@
-/* let questions = JSON.parse($('#questions').val());
-$('#questions').remove();
-let questionsStatus = questions.map(question => {
-    return {
-        id: question.id,
-        showed: false
-    }
-});
+let questions = $('#popup-questions').val();
 
-let $questionModal = $('#question-modal');
-$questionModal.modal({
-    backdrop: 'static',
-    keyboard: false,
-    'show': false
-});
+if (questions) {
+    questions = JSON.parse(questions);
+    $('#popup-questions').remove();
+    let questionsStatus = questions.map(question => {
+        return {
+            id: question.id,
+            showed: false
+        }
+    });
 
-const player = new Plyr('#player');
+    let $questionModal = $('#question-modal');
+    $questionModal.modal({
+        backdrop: 'static',
+        keyboard: false,
+        'show': false
+    });
 
-setInterval(() => {
+    setInterval(() => {
 
-    if (!player.playing) return;
+        if (!player.playing) return;
 
-    let currentTime = Math.round(player.currentTime);
+        let currentTime = Math.round(player.currentTime);
 
-    let question = questions.find(question => question.lesson_time == currentTime);
+        let question = questions.find(question => question.lesson_time == currentTime);
 
-    if (!question) return;
+        if (!question) return;
 
-    let questionStatus = questionsStatus.find(status => status.id == question.id);
+        let questionStatus = questionsStatus.find(status => status.id == question.id);
 
-    if (questionStatus.showed) return;
+        if (questionStatus.showed) return;
 
-    player.pause();
+        player.pause();
 
-    let template = `<h3 class="question"> ${question.body} </h3>`;
-    let answersTemplate = '';
-    if (question.type == 'mcq') {
+        player.fullscreen.exit();
 
-        answersTemplate += question.answers.map(answer => {
-            return `
-                <button class="btn btn-success answer-btn" question="${question.id}" answer="${answer.id}">
+
+        let template = `<h3 class="question"> ${question.body} </h3>`;
+        let answersTemplate = '';
+        if (question.type == 'mcq') {
+            question.answers.forEach(answer => {
+                template += `
+                <button class="btn answer-btn" question="${question.id}" answer="${answer.id}">
                     ${answer.body}
-                </button>
+                </button>`;
+            });
 
-            `;
-        });
-
-        template += answersTemplate;
-
-
-    } else if (question.type == 'text') {
-
-        template += `
+        } else if (question.type == 'text') {
+            template += `
             <input class="form-control" />
-            <button class="btn btn-success answer-text" question="${question.id}">
+            <button class="btn answer-text" question="${question.id}">
                 Add Answer
             </button>
         `
-    }
+        }
 
-    $questionModal.find('.modal-body').html(template);
+        $questionModal.find('.modal-body').html(template);
 
-    $questionModal.modal('show')
+        $questionModal.modal('show');
 
-}, 1000);
-
-
-$(window).blur(() => {
-    player.pause();
-})
+    }, 1000);
 
 
-$(document).on('click', '.answer-btn', function () {
+    $(window).blur(() => {
+        player.pause();
+    })
 
-    let $this = $(this);
-    let questionId = $this.attr('question');
-    let answerId = $this.attr('answer');
-    let answer = $this.text().trim();
-    let question = questions.find(question => question.id == questionId);
-    let index = questionsStatus.findIndex(status => status.id == question.id);
-    let status = {
-        id: question.id,
-        showed: true,
-    };
-    questionsStatus[index] = status;
-    if (question.correct_answer_id == answerId) {
+
+    $(document).on('click', '.answer-btn', function () {
+
+        let $this = $(this);
+        let questionId = $this.attr('question');
+        let answerId = $this.attr('answer');
+        let answer = $this.text().trim();
+        let question = questions.find(question => question.id == questionId);
+        let index = questionsStatus.findIndex(status => status.id == question.id);
+        let status = {
+            id: question.id,
+            showed: true,
+        };
+
+        if (question.correct_answer_id == answerId) {
+            axios.post(`/${question.id}/answers`, {
+                    answer
+                })
+                .then(() => {
+                    $questionModal.modal('hide');
+                    swal({
+                        title: 'Correct answer!',
+                        text: `Correct answer, you earned ${question.grade} points`,
+                        type: 'success',
+                        confirmButtonText: 'Great!'
+                    }).then((result) => {
+                        if (result.value) {
+                            player.fullscreen.enter();
+                            player.play();
+                        }
+                    });
+
+                });
+        } else {
+            $questionModal.modal('hide');
+            Swal({
+                title: 'Wrong answer!',
+                text: "Your answer is wrong",
+                type: 'error',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Return to the backward point!'
+            }).then((result) => {
+                if (result.value) {
+                    player.currentTime = question.lesson_backward_time;
+                    status.showed = false;
+                }
+                player.fullscreen.enter();
+                player.play();
+            });
+
+        }
+
+        questionsStatus[index] = status;
+    });
+
+    $(document).on('click', '.answer-text', function () {
+
+        let $this = $(this);
+        let questionId = $this.attr('question');
+        let answer = $this.prev('input').val();
+        let question = questions.find(question => question.id == questionId);
         axios.post(`/${question.id}/answers`, {
                 answer
             })
             .then(() => {
                 $questionModal.modal('hide');
+                let index = questionsStatus.findIndex(status => status.id == question.id);
+                let status = {
+                    id: question.id,
+                    showed: true,
+                };
+                questionsStatus[index] = status;
                 swal({
-                    title: 'Correct answer!',
-                    text: `Correct answer, you earned ${question.grade} points`,
+                    title: 'Answer added!',
+                    text: `We will revise your answer to check if it's correct or not.`,
                     type: 'success',
                     confirmButtonText: 'Great!'
                 }).then((result) => {
@@ -101,56 +152,10 @@ $(document).on('click', '.answer-btn', function () {
                 });
 
             });
-    } else {
-        $questionModal.modal('hide');
-        Swal({
-            title: 'Wrong answer!',
-            text: "Your answer is wrong",
-            type: 'error',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Return to the backward point!'
-        }).then((result) => {
-            if (result.value) {
-                player.currentTime = question.lesson_backward_time;
-            }
-            player.play();
-        });
+    });
 
-    }
-});
+}
 
-$(document).on('click', '.answer-text', function () {
-
-    let $this = $(this);
-    let questionId = $this.attr('question');
-    let answer = $this.prev('input').val();
-    let question = questions.find(question => question.id == questionId);
-    axios.post(`/${question.id}/answers`, {
-            answer
-        })
-        .then(() => {
-            $questionModal.modal('hide');
-            let index = questionsStatus.findIndex(status => status.id == question.id);
-            let status = {
-                id: question.id,
-                showed: true,
-            };
-            questionsStatus[index] = status;
-            swal({
-                title: 'Answer added!',
-                text: `We will revise your answer to check if it's correct or not.`,
-                type: 'success',
-                confirmButtonText: 'Great!'
-            }).then((result) => {
-                if (result.value) {
-                    player.play();
-                }
-            });
-
-        });
-}); */
 
 const player = new Plyr('#player');
 

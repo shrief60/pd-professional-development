@@ -8,6 +8,7 @@ use Cviebrock\EloquentSluggable\Sluggable;
 class Unit extends Model
 {
 
+
     use Sluggable;
 
     protected $guarded = [];
@@ -42,11 +43,6 @@ class Unit extends Model
             ]
         ];
 
-    }
-
-    public function lessonsOrder()
-    {
-        return ++$this->lessons()->select('order')->latest('order')->first()->order;
     }
 
 
