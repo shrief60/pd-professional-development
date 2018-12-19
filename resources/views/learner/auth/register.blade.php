@@ -34,27 +34,32 @@
     </div>
 
     <div class="grid">
-        <div class="input-group">
-            <input type="password" class="form-control" name="password" placeholder="Password" value="{{ old('password') }}" />
-            <span class="input-group-addon">
-                <img src="{{ getImageIcon('key') }}" alt="" class="icon">
-            </span>
+
+        <div>
+            <div class="input-group">
+                <input type="password" class="form-control" name="password" placeholder="Password" value="{{ old('password') }}" />
+                <span class="input-group-addon">
+                    <img src="{{ getImageIcon('key') }}" alt="" class="icon">
+                </span>
+            </div>
         </div>
 
-        <div class="input-group">
-            <input type="password" placeholder="Confirm Password" name="password_confirmation" class="form-control" value="{{ old('password_confirmation') }}" />
-            <span class="input-group-addon">
-                <img src="{{ getImageIcon('lock') }}" alt="" class="icon">
-            </span>
+        <div>
+            <div class="input-group">
+                <input type="password" placeholder="Confirm Password" name="password_confirmation" class="form-control" value="{{ old('password_confirmation') }}" />
+                <span class="input-group-addon">
+                    <img src="{{ getImageIcon('lock') }}" alt="" class="icon">
+                </span>
+            </div>
         </div>
 
     </div>
 
-    <select class="custom-select">
-      <option selected disabled> Learner Type </option>
-      <option value="student"> Student </option>
-      <option value="teacher"> Teacher </option>
-      <option value="mentor"> Mentor </option>
+    <select name="type" class="custom-select">
+        <option selected disabled> Learner Type </option>
+        <option value="student"> Student </option>
+        <option value="teacher"> Teacher </option>
+        <option value="mentor"> Mentor </option>
     </select>
     <button type="submit" class="btn ">SIGN UP</button>
 </form>

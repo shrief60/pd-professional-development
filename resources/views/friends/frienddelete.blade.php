@@ -1,0 +1,1 @@
+frienddelete.blade.php

@@ -15,17 +15,20 @@ class QuestionsTableSeeder extends Seeder
 
         $faker = Faker::create();
 
-        App\Lesson::whereType('video')->each(function ($lesson) use ($faker) {
+        App\Lesson::all()->each(function ($lesson) use ($faker) {
 
             $i = 0;
 
-            for ($i; $i < 3; $i++) {
+            for ($i; $i < 10; $i++) {
 
                 $lessonId = $lesson->id;
-                $lessonTime = $faker->numberBetween(11, 74);
-                $type = 'mcq';
+                $lessonTime = $faker->numberBetween(0, $lesson->duration);
+                $type = $faker->randomElement(['mcq', 'text']);
+
                 $lessonBackwardTime = $type === 'mcq' ? $lessonTime - 10 : null;
+
                 $question = $lesson->questions()->save(factory(App\Question::class)->make([
+                    'lesson_id' => $lessonId,
                     'type' => $type,
                     'lesson_time' => $lessonTime,
                     'lesson_backward_time' => $lessonBackwardTime,

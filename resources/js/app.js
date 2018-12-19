@@ -7,38 +7,39 @@
 
 require('./bootstrap');
 
-window.Vue = require('vue');
+// window.Vue = require('vue');
 
-/** VueRouter */
-import VueRouter from 'vue-router';
-import router from './router/router';
-Vue.use(VueRouter);
+// /** VueRouter */
+// import VueRouter from 'vue-router';
+// import router from './router/router';
+// Vue.use(VueRouter);
 
-/** Vuex */
-import { store } from './store/store';
+// /** Vuex */
+// import { store } from './store/store';
 
-/** Vue Notifications */
-import Toasted from 'vue-toasted';
-Vue.use(Toasted)
+// /** Vue Notifications */
+// import Toasted from 'vue-toasted';
+// Vue.use(Toasted)
 
-/** Bootstrap Vue */
-import BootstrapVue from 'bootstrap-vue'
-Vue.use(BootstrapVue);
+// /** Bootstrap Vue */
+// import BootstrapVue from 'bootstrap-vue'
+// Vue.use(BootstrapVue);
 
-/** Plyr Video */
-import VuePlyr from 'vue-plyr';
-import 'vue-plyr/dist/vue-plyr.css';
-Vue.use(VuePlyr);
+// /** Plyr Video */
+// import VuePlyr from 'vue-plyr';
+// import 'vue-plyr/dist/vue-plyr.css';
+// Vue.use(VuePlyr);
 
-/** Public components */
-import app from './components/app';
-Vue.component('loading', require('./components/partials/loading'));
+// /** Public components */
+// import app from './components/app';
+// Vue.component('loading', require('./components/partials/loading'));
 
-/** Fresh vue application */
-const App = new Vue({
-    el: '#app',
-    components: {app},
-    template: '<app />',
-    router,
-    store
-});
+// /** Fresh vue application */
+// const App = new Vue({
+//     el: '#app',
+//     components: {app},
+//     template: '<app />',
+//     router,
+//     store
+// });
+

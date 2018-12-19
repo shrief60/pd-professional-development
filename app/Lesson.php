@@ -4,11 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
+use Znck\Eloquent\Traits\BelongsToThrough;
 
 class Lesson extends Model
 {
 
-    use Sluggable;
+    use Sluggable, BelongsToThrough;
 
     protected $guarded = [];
 
@@ -18,6 +19,11 @@ class Lesson extends Model
     public function unit()
     {
         return $this->belongsTo(Unit::class);
+    }
+
+    public function course()
+    {
+        return $this->belongsToThrough(Course::class, Unit::class);
     }
 
     public function comments()
@@ -41,6 +47,10 @@ class Lesson extends Model
     public function getPathAttribute($path)
     {
         return asset("/storage/{$path}");
+    }
+    public function getPosterAttribute($poster)
+    {
+        return asset("/storage/{$poster}");
     }
 
     /*************************************************************************/

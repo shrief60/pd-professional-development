@@ -9,7 +9,7 @@ $secondary: #7A8192;
 
     .navbar-brand {
         img {
-            height: 78px;
+            height: 50px;
             width: auto;
         }
     }
@@ -47,19 +47,7 @@ $secondary: #7A8192;
                 outline: none;
             }
         }
-
-        svg {
-            width: 25px;
-            height: 20px;
-            fill: $secondary;
-        }
-        &.notifications {
-            border: none;
-        }
     }
-
-
-
 
     #user-profile {
         span {

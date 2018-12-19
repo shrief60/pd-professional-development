@@ -50,7 +50,7 @@
     </div>
 
 
-    <select class="custom-select">
+    <select name="type" class="custom-select">
         <option selected disabled> Admin Type </option>
         <option value="admin"> Admin </option>
         <option value="educator"> Educator </option>
@@ -65,5 +65,5 @@
     <hr class="bar">
 </div>
 
-<a class="btn auth-switcher" href="{{ route('learner.login') }}"> Have an Account? </a>
+<a class="btn auth-switcher" href="{{ url('login') }}"> Have an Account? </a>
 @stop

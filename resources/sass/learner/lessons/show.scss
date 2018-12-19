@@ -1,12 +1,10 @@
 @import '../../variables';
 
+@import '~plyr/src/sass/plyr';
+
 $sidebarBackground: #40434A;
 $sidebarBorderColor: #5E636F;
 $bodyBackground: #383A3F;
-$gold: #F4B400;
-
-@import '~plyr/src/sass/plyr';
-@import 'header';
 
 body {
     background: #383A3F;
@@ -14,64 +12,25 @@ body {
 
 main.main {
     display: grid;
-    grid-template-columns: 1fr 3fr;
+    grid-template-columns: 300px auto;
 
     aside {
+        background: $sidebarBackground;
         display: grid;
         $blue: #4285F4;
-
-        .course {
-            background: $sidebarBackground;
-            margin-bottom: 1.5rem;
-            display: grid;
-            grid-template-columns: 5fr 2fr;
-
-            .info {
-                padding: 1rem;
-
-                * {
-                    color: #fff;
-                }
-
-                .title {
-                    font-size: 1.25rem;
-                    border-left: 4px solid $gold;
-                    text-transform: uppercase;
-                    padding-left: 0.5rem;
-                }
-
-                .name {
-                    margin-top: 1rem;
-                    font-size: 2rem;
-                }
-
-
-                border-right: 1px solid $bodyBackground;
-            }
-
-            .right {
-                .percentage {
-                    width: 100px;
-                    height: 100px;
-                    border-radius: 50%;
-                    border: 2px solid $sidebarBorderColor;
-                }
-            }
-        }
 
         .units {
             align-self: start;
         }
 
         .unit {
-            background: $sidebarBackground;
             border-bottom: 1px solid $sidebarBorderColor;
 
             .unit-details {
                 padding: 1rem 2rem;
                 position: relative;
 
-                span:not(.circle) {
+                span {
                     text-transform: uppercase;
                     color: #fff;
                     position: relative;
@@ -87,39 +46,22 @@ main.main {
                     width: 20px;
                 }
 
-                .unit-name {
-                    font-size: 22px;
-                }
-
                 .unit-number {
                     padding: 0.1rem 0.75rem;
                     border-radius: 2rem;
                     background: $blue;
-                    display: flex;
+                    display: block;
                     letter-spacing: 2px;
                     width: fit-content;
-                    position: relative;
-                    text-transform: uppercase;
-                    color: #fff;
-                    position: relative;
-                    margin-bottom: 0.3rem;
-                    height: 30px;
 
-                    .text {
-                        z-index: 10;
-                        margin: 0;
-                        align-self: center;
-                    }
-
-                    .circle {
-                        width: 30px;
-                        height: 100%;
-                        background: #1EA833;
-                        border-radius: 50%;
-                        position: absolute;
-                        top: 0px;
-                        left: 0px;
-
+                    &.active {
+                        &:before {
+                            content: '';
+                            width: 30%;
+                            position: absolute;
+                            background: green;
+                            border-radius: 50%
+                        }
                     }
                 }
 
@@ -136,48 +78,42 @@ main.main {
                 padding: 1rem 0;
 
                 .lesson {
-                    padding: 0 1rem;
-                    margin-bottom: 2rem;
-                    font-size: 1.2rem;
+                    padding-left: 1rem;
+                    margin-bottom: 1rem;
                     display: grid;
-                    grid-template-columns: 30px 30px auto;
-                    align-items: start;
+                    grid-template-columns: 25px 30px auto;
+                    align-items: center;
 
                     .pulse {
                         display: inline-block;
                         width: 10px;
                         height: 10px;
                         border-radius: 50%;
-                        background: $gold;
+                        background: #cca92c;
                         cursor: pointer;
-                        box-shadow: 0 0 0 rgba($gold, 0.4);
+                        box-shadow: 0 0 0 rgba(#cca92c, 0.4);
                         animation: pulse 2s infinite;
-                        margin-top: 10px;
-                        justify-self: center;
                     }
 
                     @keyframes pulse {
                         0% {
-                            box-shadow: 0 0 0 0 rgba($gold, 0.4);
+                            -moz-box-shadow: 0 0 0 0 rgba(204, 169, 44, 0.4);
+                            box-shadow: 0 0 0 0 rgba(204, 169, 44, 0.4);
                         }
 
                         70% {
-                            box-shadow: 0 0 0 10px rgba($gold, 0);
+                            -moz-box-shadow: 0 0 0 10px rgba(204, 169, 44, 0);
+                            box-shadow: 0 0 0 10px rgba(204, 169, 44, 0);
                         }
 
                         100% {
-                            box-shadow: 0 0 0 0 rgba($gold, 0);
+                            -moz-box-shadow: 0 0 0 0 rgba(204, 169, 44, 0);
+                            box-shadow: 0 0 0 0 rgba(204, 169, 44, 0);
                         }
                     }
 
-                    svg {
-                        width: 22px;
-                        margin-top: 5px;
-                        fill: #fff;
-                    }
-
-                    svg.status {
-                        fill: #1EA833;
+                    img {
+                        width: 20px;
                     }
 
                     a {
@@ -186,7 +122,6 @@ main.main {
 
                     span {
                         color: lighten($sidebarBorderColor, 20);
-                        word-wrap: break-word;
 
                         &:hover {
                             color: lighten($sidebarBorderColor, 30);
@@ -198,6 +133,8 @@ main.main {
                             color: #fff;
                         }
                     }
+
+
                 }
             }
 
@@ -239,7 +176,7 @@ main.main {
         .certification {
             align-self: end;
             padding: 1rem;
-            border: 2px solid $gold;
+            border: 2px solid #cca92c;
             border-radius: 1rem;
             width: 90%;
             margin: 1rem auto 2rem;
@@ -247,11 +184,9 @@ main.main {
             grid-template-columns: 80px auto;
             align-items: center;
             justify-content: center;
-
             img {
                 height: 70px;
             }
-
             span {
                 font-size: 1.2rem;
                 text-transform: uppercase;
@@ -262,16 +197,6 @@ main.main {
 
     .content {
         .lesson {
-
-            .reading {
-                height: 80vh;
-
-                embed {
-                    width: 100%;
-                    height: 100%;
-                    overflow-y: hidden;
-                }
-            }
 
             .details {
                 width: 98%;
@@ -309,11 +234,10 @@ main.main {
                     margin-bottom: 2px;
                     background: $sidebarBackground;
                     padding-left: 2rem;
-
                     .nav-item {
                         &:not(:last-child) {
                             .nav-link {
-                                //border-right: 3px solid $gold !important;
+                                border-right: 3px solid #cca92c !important;
                             }
                         }
                     }
@@ -322,21 +246,11 @@ main.main {
                         color: lighten($sidebarBorderColor, 20);
                         border: 0px;
                         text-align: center;
-                        position: relative;
 
                         span {
-                            color: $gold;
+                            color: #cca92c;
                         }
 
-                        &:after {
-                            content: "";
-                            position: absolute;
-                            left: 0;
-                            top: 34%;
-                            width: 3px;
-                            height: 12px;
-                            background: $gold !important
-                        }
 
 
                         &:hover {
@@ -429,41 +343,6 @@ main.main {
                 }
             }
 
-        }
-    }
-}
-
-
-#question-modal {
-    .modal-content {
-        border-radius: none;
-        background: transparent;
-        border: none;
-    }
-
-    .modal-body {
-        background: $sidebarBackground;
-        border-radius: 1.5rem;
-
-        .question {
-            text-align: center;
-            margin: 1rem 0 2rem;
-            color: #fff;
-        }
-
-        .btn {
-            background: transparent;
-            border: 2px solid $gold;
-            transition: 0.5s all;
-            display: block;
-            width: 80%;
-            margin: 1rem auto;
-            color: #fff;
-            border-radius: 2rem;
-
-            &:hover {
-                background: $gold;
-            }
         }
     }
 }

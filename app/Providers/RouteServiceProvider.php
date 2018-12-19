@@ -75,8 +75,7 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapLearnerRoutes()
     {
 
-        Route::domain(config('app.url'))
-            ->middleware(['web', 'learner', 'auth:learner'])
+        Route::middleware(['web', 'learner', 'auth:learner'])
             ->name('learner.')
             ->namespace($this->learnerNamespace)
             ->group(base_path('routes/learner.php'));
