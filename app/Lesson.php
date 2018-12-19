@@ -30,9 +30,9 @@ class Lesson extends Model
         return $this->hasMany(Question::class);
     }
 
-    public function students()
+    public function learners()
     {
-        return $this->belongsToMany(Student::class);
+        return $this->belongsToMany(Learner::class);
     }
 
     /*************************************************************************/
@@ -41,6 +41,24 @@ class Lesson extends Model
     public function getPathAttribute($path)
     {
         return asset("/storage/{$path}");
+    }
+    public function getPosterAttribute($poster)
+    {
+        return asset("/storage/{$poster}");
+    }
+    public function getIsVideoAttribute()
+    {
+        return $this->type === 'video';
+    }
+
+    public function getIsReadingAttribute()
+    {
+        return $this->type === 'reading';
+    }
+
+    public function getIsPracticeAttribute()
+    {
+        return $this->type === 'practice';
     }
 
     /*************************************************************************/
@@ -51,6 +69,9 @@ class Lesson extends Model
         return 'slug';
     }
 
+    /*************************************************************************/
+    /*                          Slug                                         */
+    /*************************************************************************/
     public function sluggable()
     {
         return [
@@ -59,4 +80,5 @@ class Lesson extends Model
             ],
         ];
     }
+
 }

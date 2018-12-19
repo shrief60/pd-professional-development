@@ -7,6 +7,7 @@ $gold: #F4B400;
 
 @import '~plyr/src/sass/plyr';
 @import 'header';
+@import '../../vendor/progress-circle';
 
 body {
     background: #383A3F;
@@ -14,17 +15,20 @@ body {
 
 main.main {
     display: grid;
-    grid-template-columns: 1fr 3fr;
+    grid-template-columns: 350px auto;
 
     aside {
-        display: grid;
+        display: flex;
+        flex-direction: column;
         $blue: #4285F4;
 
         .course {
+            align-self: start;
             background: $sidebarBackground;
             margin-bottom: 1.5rem;
             display: grid;
             grid-template-columns: 5fr 2fr;
+            align-items: center;
 
             .info {
                 padding: 1rem;
@@ -35,9 +39,20 @@ main.main {
 
                 .title {
                     font-size: 1.25rem;
-                    border-left: 4px solid $gold;
+                    //border-left: 4px solid $gold;
                     text-transform: uppercase;
-                    padding-left: 0.5rem;
+                    padding-left: 1rem;
+                    position: relative;
+
+                    &:before {
+                        position: absolute;
+                        content: '';
+                        width: 6px;
+                        height: 70%;
+                        top: 15%;
+                        left: 0px;
+                        background: $gold;
+                    }
                 }
 
                 .name {
@@ -45,16 +60,22 @@ main.main {
                     font-size: 2rem;
                 }
 
-
                 border-right: 1px solid $bodyBackground;
             }
 
             .right {
-                .percentage {
-                    width: 100px;
-                    height: 100px;
-                    border-radius: 50%;
-                    border: 2px solid $sidebarBorderColor;
+                .progress-circle {
+                    margin: 0rem 1rem;
+                    width: 70px;
+                    height: 70px;
+                }
+
+                .finished {
+                    color: $sidebarBorderColor;
+                    text-align: center;
+                    display: block;
+                    width: 100%;
+                    font-weight: normal;
                 }
             }
         }
@@ -78,14 +99,16 @@ main.main {
                     margin-bottom: 0.3rem;
                 }
 
-                .unit-toggler {
+                .unit-status {
                     position: absolute;
-                    color: #fff;
+                    fill: $sidebarBorderColor;
                     top: 20px;
                     right: 10px;
-                    cursor: pointer;
                     width: 20px;
+
                 }
+
+                .unit-toggler {}
 
                 .unit-name {
                     font-size: 22px;
@@ -212,26 +235,38 @@ main.main {
                 border-radius: 0 1.2rem 1.2rem 0;
 
                 span {
-                    text-align: center;
+                    padding-left: 1rem;
                 }
 
                 * {
                     color: #fff;
                 }
 
-                img {
+                svg {
                     width: 32px;
                     justify-self: center;
                 }
 
                 .title {
-                    font-size: 1.2rem;
+                    font-size: 1.4rem;
                     text-transform: uppercase;
-                    border-right: 1px solid #fff;
+                    position: relative;
+                    font-weight: bold;
+
+                    &::after {
+                        content: '';
+                        height: 80%;
+                        width: 2px;
+                        position: absolute;
+                        top: 10%;
+                        right: 0;
+                        background: #fff;
+                    }
                 }
 
                 .text {
-                    text-transform: capitalize;
+                    font-size: 0.9rem;
+                    text-transform: uppercase;
                 }
             }
         }
@@ -273,6 +308,20 @@ main.main {
                 }
             }
 
+            .practice {
+                width: 95%;
+                margin: auto;
+                .question {
+                    background: $sidebarBackground;
+                    margin-bottom: 0.5rem;
+                    padding: 2rem 1rem;
+                    .answer {
+                        display: block;
+                        margin: 1rem;
+                    }
+                }
+            }
+
             .details {
                 width: 98%;
                 margin: 1rem auto;
@@ -304,6 +353,7 @@ main.main {
             .footer-tabs {
                 width: 98%;
                 margin: 1rem auto;
+
                 .nav-tabs {
                     border: 0;
                     margin-bottom: 2px;
@@ -393,9 +443,23 @@ main.main {
                                 display: grid;
                                 grid-template-columns: 1fr 1fr;
                                 align-items: center;
+                                min-height: 60px;
 
                                 .left {
                                     justify-self: start;
+                                    position: relative;
+
+                                    &:before {
+                                        display: inline-block;
+                                        content: '';
+                                        width: 6px;
+                                        left: -3px;
+                                        top: 50%;
+                                        transform: translate(0, -50%);
+                                        background: $gold;
+                                        height: 80%;
+                                        position: absolute;
+                                    }
 
                                     .date {
                                         color: lighten($sidebarBorderColor, 30);

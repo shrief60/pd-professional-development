@@ -9,7 +9,7 @@ class MentorProfile extends Model
 
     protected $guarded = [];
 
-    public function mentor()
+    public function learner()
     {
         return $this->belongsTo(Learner::class);
     }

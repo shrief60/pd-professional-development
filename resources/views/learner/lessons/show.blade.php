@@ -13,10 +13,11 @@
                 <h3 class="name">{{ $lesson->course->name }}</h3>
             </div>
             <div class="right">
-                {{-- <div class="pie-wrapper pie-wrapper--solid progress-25">
-                    <span class="label">25<span class="smaller">%</span></span>
-                </div> --}}
-                {{-- <div id="percent-container" percent="25"></div> --}}
+                @php
+                $perc = $lesson->course->progress();
+                @endphp
+                <div class="progress-circle progress-{{ $perc }}"><span>{{ $perc }}</span></div>
+                <span class="finished"> {{ $lesson->course->finishedUnits() }}/{{ $lesson->course->units()->count() }} modules </span>
             </div>
         </div>
         <div class="units">
@@ -33,6 +34,8 @@
                         <span class="circle"></span> @endif
                     </div>
                     <span class="unit-name"> {{ $courseUnit->name }} </span>
+                    <img class="unit-status svg" src="{{ icon($courseUnit->statusIcon(), 'svg') }}" />
+
                     {{-- @if($isActiveUnit)
                     <img src="{{ icon('up-arrow') }}" class="icon unit-toggler" /> @else
                     <img src="{{ icon('down-arrow') }}" class="icon unit-toggler" /> @endif --}}
@@ -49,11 +52,11 @@
                         } elseif($unitLesson->isReading) {
                             $image = 'reading';
                         } elseif($unitLesson->isPractice) {
-                            $image = 'reading';
+                            $image = 'practice';
                         }
                         @endphp
                         @if($isActiveLesson)
-                        <span class="pulse animated infinite"></span>
+                        <span class="pulse"></span>
                         <img class="svg" src="{{ icon($image, 'svg') }}">
                         <span class="lesson-title"> {{ $unitLesson->title }} </span> @else
                         <img src="{{ icon('double-tick', 'svg') }}" class="status svg" >
@@ -66,9 +69,9 @@
                     </div>
                     @endforeach
                     <div class="challenges">
-                        <img src="{{ icon('challenges', 'svg') }}" class="icon" />
-                        <span class="title"> unit challenge </span>
-                        <span class="text"> maximize your understanding </span>
+                        <img src="{{ icon('challenges', 'svg') }}" class="svg" />
+                        <span class="title"> module test </span>
+                        <span class="text"> measure your knowledge </span>
                     </div>
                 </div>
             </div>
@@ -85,17 +88,50 @@
 
         <div class="lesson">
 
-            @if($unitLesson->isVideo)
+            @if($lesson->isVideo)
             <div class="video">
                 <video poster="{{ $lesson->poster }}" id="player" playsinline controls>
                     <source src="{{ $lesson->path }}" type="video/mp4">
                 </video>
             </div>
-            <input type="hidden" value="{{ $lesson->questions }}" id="popup-questions"> @elseif($lesson->isReading)
+            <input type="hidden" value="{{ $lesson->questions }}" id="popup-questions">
+            @elseif($lesson->isReading)
             <div class="reading">
                 <embed src="{{ $lesson->path }}" />
             </div>
-            @elseif($lesson->isPractice) @endif
+            @elseif($lesson->isPractice)
+            <div class="practice">
+                <form method="POST">
+                    @csrf
+
+                    <div class="grid">
+
+                        <div>
+                            @foreach ($lesson->questions as $question)
+                            <div class="question shadow">
+                                <p> {{ $question->body }} </p>
+                                @if($question->isMCQ)
+                                <div class="answers">
+                                    @foreach($question->answers as $answer)
+                                    <div class="pretty p-icon p-pulse p-round answer">
+                                        <input type="radio" name="question-{{ $question->id }}" value="{{ $answer->id }}" />
+                                        <div class="state p-warning-o">
+                                            <i class="icon zmdi zmdi-check"></i>
+                                            <label> {{ $answer->body }} </label>
+                                        </div>
+                                    </div>
+                                    @endforeach
+                                </div>
+                                @endif
+                            </div>
+                            @endforeach
+                            <button type="submit" class="btn hvr-bounce-to-top" id="check-answers-btn"> Check your anwers </button>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+            @endif
             <div class="details shadow">
                 <h2 class="lesson-title"> {{ $lesson->title }}</h2>
                 <div class="grid">
@@ -186,12 +222,17 @@
     </div>
 </div>
 
-
 @endsection
- @push('scripts')
+
+@push('scripts')
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.32.2/dist/sweetalert2.all.min.js"></script>
+@if($lesson->isVideo)
+    <script> let questionsURL = @json(route('learner.questions.index', $lesson)) </script>
+@endif
 <script src="{{ asset('js/learner/lessons/show.js') }}"></script>
 
-@endpush @push('css')
+@endpush
+
+@push('css')
 <link rel="stylesheet" href="{{ asset('css/learner/lessons/show.css') }}">
 @endpush

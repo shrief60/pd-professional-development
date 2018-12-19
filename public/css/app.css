@@ -1,7 +1,9 @@
-@import url(https://fonts.googleapis.com/css?family=Nunito);/*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
-
+@import url(https://fonts.googleapis.com/css?family=Nunito);
+@import url(https://fonts.googleapis.com/css?family=Ubuntu+Condensed|Open+Sans);
+@import url(https://fonts.googleapis.com/css?family=Mali|Montserrat+Alternates|PT+Sans+Narrow|Rambla|Titillium+Web|Changa);
+@import url(https://fonts.googleapis.com/css?family=News+Cycle|Source+Sans+Pro:400i);
+/* @charset "UTF-8"; */
 /* Document
-   ========================================================================== */
 
 /**
  * 1. Correct the line height in all browsers.
@@ -11150,5 +11152,50 @@ a.text-dark:focus {
 
 .btn {
   min-width: 100px;
+}
+
+*:not(i) {
+  font-family: 'Titillium Web', sans-serif !important;
+  letter-spacing: 1.2px;
+}
+
+/* h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'News Cycle',
+        sans-serif !important;
+} */
+
+img.icon,
+img.svg {
+  width: 32px;
+}
+
+img.svg {
+  display: none;
+}
+
+.box {
+  width: 95%;
+  margin: 20px auto;
+  background-color: #fff;
+  border-radius: 4px;
+  -webkit-box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.2), 0px 0px 1px 0px rgba(0, 0, 0, 0.2);
+          box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.2), 0px 0px 1px 0px rgba(0, 0, 0, 0.2);
+  padding: 1rem;
+  position: relative;
+}
+
+.box .btn {
+  background: transparent;
+  border: 1px solid #38c172;
+  color: #38c172;
+}
+
+.box .btn:hover {
+  color: #fff;
 }
 

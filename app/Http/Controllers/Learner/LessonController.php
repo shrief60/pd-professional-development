@@ -17,7 +17,7 @@ class LessonController extends Controller
         return view('learner.lessons.index', compact('lessons'));
     }
 
-    public function show(Unit $unit, Lesson $lesson)
+    public function show(Lesson $lesson)
     {
         $lesson->load('units.lessons');
 

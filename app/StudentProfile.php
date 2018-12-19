@@ -9,7 +9,7 @@ class StudentProfile extends Model
 
     protected $guarded = [];
 
-    public function student()
+    public function learner()
     {
         return $this->belongsTo(Learner::class);
     }
